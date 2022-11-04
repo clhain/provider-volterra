@@ -24,9 +24,9 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal volterra credentials as JSON"
-	keyApiP12File           = "api_p12_file"
-	keyApiCert              = "api_cert"
-	keyApiKey               = "api_key"
+	keyAPIP12File           = "api_p12_file"
+	keyAPICert              = "api_cert"
+	keyAPIKey               = "api_key"
 	keyURL                  = "url"
 	keyTimeout              = "timeout"
 )
@@ -69,9 +69,9 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 
 		// Set credentials in Terraform provider configuration.
 		ps.Configuration = map[string]interface{}{
-			keyApiP12File: pc.Spec.ApiP12File,
-			keyApiCert:    pc.Spec.ApiCert,
-			keyApiKey:     pc.Spec.ApiKey,
+			keyAPIP12File: pc.Spec.APIP12File,
+			keyAPICert:    pc.Spec.APICert,
+			keyAPIKey:     pc.Spec.APIKey,
 			keyURL:        pc.Spec.URL,
 			keyTimeout:    pc.Spec.Timeout,
 		}
