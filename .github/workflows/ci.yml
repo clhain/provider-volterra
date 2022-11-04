@@ -250,4 +250,4 @@ jobs:
           password: ${{ secrets.DOCKER_PSW }}
 
       - name: Publish Artifacts
-        run: make make publish.artifacts XPKG_REG_ORGS=index.docker.io/clhainf5 BRANCH_NAME=${GITHUB_REF##*/}
+        run: make publish.artifacts XPKG_REG_ORGS=index.docker.io/clhainf5 BRANCH_NAME=${GITHUB_REF##*/}
