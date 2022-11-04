@@ -248,12 +248,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USR }}
           password: ${{ secrets.DOCKER_PSW }}
-      
-      - name: Publish Artifacts to S3 and Docker Hub
-        run: make -j2 publish BRANCH_NAME=${GITHUB_REF##*/}
-        if: env.DOCKER_USR != ''
-        env:
-          GIT_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Artifacts
-        run: make publish BRANCH_NAME=${GITHUB_REF##*/}
+        run: make make publish.artifacts XPKG_REG_ORGS=index.docker.io/clhainf5 BRANCH_NAME=${GITHUB_REF##*/}
