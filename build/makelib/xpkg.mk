@@ -80,10 +80,10 @@ $(foreach x,$(XPKGS),$(eval $(call xpkg.build.targets,$(x))))
 define xpkg.release.targets
 xpkg.release.publish.$(1).$(2):
 	@$(INFO) Pushing package $(1)/$(2):$(VERSION)
-	# @$(UP) xpkg push \
-	# 	$(foreach p,$(XPKG_LINUX_PLATFORMS),--package $(XPKG_OUTPUT_DIR)/$(p)/$(2)-$(VERSION).xpkg ) \
-	# 	$(1)/$(2):$(VERSION) || $(FAIL)
-	# @$(OK) Pushed package $(1)/$(2):$(VERSION)
+	@$(UP) xpkg push \
+		$(foreach p,$(XPKG_LINUX_PLATFORMS),--package $(XPKG_OUTPUT_DIR)/$(p)/$(2)-$(VERSION).xpkg ) \
+		$(1)/$(2):$(VERSION) || $(FAIL)
+	@$(OK) Pushed package $(1)/$(2):$(VERSION)
 xpkg.release.publish: xpkg.release.publish.$(1).$(2)
 
 xpkg.release.promote.$(1).$(2):
