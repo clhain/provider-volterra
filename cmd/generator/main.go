@@ -11,7 +11,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/pipeline"
 
-	"github.com/clhainf5/provider-volterra/config"
+	"github.com/clhain/provider-volterra/config"
 )
 
 func main() {

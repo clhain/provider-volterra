@@ -24,12 +24,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/clhainf5/provider-volterra/apis"
-	"github.com/clhainf5/provider-volterra/apis/v1alpha1"
-	"github.com/clhainf5/provider-volterra/config"
-	"github.com/clhainf5/provider-volterra/internal/clients"
-	"github.com/clhainf5/provider-volterra/internal/controller"
-	"github.com/clhainf5/provider-volterra/internal/features"
+	"github.com/clhain/provider-volterra/apis"
+	"github.com/clhain/provider-volterra/apis/v1alpha1"
+	"github.com/clhain/provider-volterra/config"
+	"github.com/clhain/provider-volterra/internal/clients"
+	"github.com/clhain/provider-volterra/internal/controller"
+	"github.com/clhain/provider-volterra/internal/features"
 )
 
 func main() {

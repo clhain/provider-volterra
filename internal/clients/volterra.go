@@ -6,7 +6,6 @@ package clients
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 	"github.com/pkg/errors"
@@ -15,7 +14,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"github.com/clhainf5/provider-volterra/apis/v1beta1"
+	"github.com/clhain/provider-volterra/apis/v1beta1"
 )
 
 const (
@@ -25,6 +24,11 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal volterra credentials as JSON"
+	keyApiP12File           = "api_p12_file"
+	keyApiCert              = "api_cert"
+	keyApiKey               = "api_key"
+	keyURL                  = "url"
+	keyTimeout              = "timeout"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -53,20 +57,24 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errTrackUsage)
 		}
 
-		data, err := resource.CommonCredentialExtractor(ctx, pc.Spec.Credentials.Source, client, pc.Spec.Credentials.CommonCredentialSelectors)
-		if err != nil {
-			return ps, errors.Wrap(err, errExtractCredentials)
-		}
-		creds := map[string]string{}
-		if err := json.Unmarshal(data, &creds); err != nil {
-			return ps, errors.Wrap(err, errUnmarshalCredentials)
-		}
+		// Since volterra uses paths to files rather than secret values, this is useless at the moment.
+		// data, err := resource.CommonCredentialExtractor(ctx, pc.Spec.Credentials.Source, client, pc.Spec.Credentials.CommonCredentialSelectors)
+		// if err != nil {
+		// 	return ps, errors.Wrap(err, errExtractCredentials)
+		// }
+		// creds := map[string]string{}
+		// if err := json.Unmarshal(data, &creds); err != nil {
+		// 	return ps, errors.Wrap(err, errUnmarshalCredentials)
+		// }
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]interface{}{
+			keyApiP12File: pc.Spec.ApiP12File,
+			keyApiCert:    pc.Spec.ApiCert,
+			keyApiKey:     pc.Spec.ApiKey,
+			keyURL:        pc.Spec.URL,
+			keyTimeout:    pc.Spec.Timeout,
+		}
 		return ps, nil
 	}
 }

@@ -1,6 +1,8 @@
-module github.com/clhainf5/provider-volterra
+module github.com/clhain/provider-volterra
 
 go 1.19
+
+replace github.com/clhain/provider-volterra => /Users/hain/Projects/crossplane/provider-volterra
 
 require (
 	github.com/crossplane/crossplane-runtime v0.19.0-rc.0.0.20221012013934-bce61005a175

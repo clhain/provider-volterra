@@ -27,7 +27,7 @@ EOF
 
 Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
 
-You can see the API reference [here](https://doc.crds.dev/github.com/clhainf5/provider-volterra).
+You can see the API reference [here](https://doc.crds.dev/github.com/clhain/provider-volterra).
 
 ## Developing
 
@@ -57,4 +57,4 @@ make build
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
-open an [issue](https://github.com/clhainf5/provider-volterra/issues).
+open an [issue](https://github.com/clhain/provider-volterra/issues).

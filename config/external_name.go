@@ -10,7 +10,14 @@ import "github.com/upbound/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": config.IdentifierFromProvider,
+	"null_resource":              config.IdentifierFromProvider,
+	"volterra_app_firewall":      config.IdentifierFromProvider,
+	"volterra_cloud_credentials": config.IdentifierFromProvider,
+	"volterra_gcp_vpc_site":      config.IdentifierFromProvider,
+	"volterra_http_loadbalancer": config.IdentifierFromProvider,
+	"volterra_namespace":         config.IdentifierFromProvider,
+	"volterra_origin_pool":       config.IdentifierFromProvider,
+	"volterra_tf_params_action":  config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
