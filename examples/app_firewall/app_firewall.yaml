@@ -1,0 +1,17 @@
+apiVersion: volterra.upbound.io/v1alpha1
+kind: AppFirewall
+metadata:
+  name: hello-crossplane-waf
+spec:
+  forProvider:
+    name: hello-crossplane-waf
+    namespaceRef:
+      name: hello-crossplane-test
+    allowAllResponseCodes: true
+    defaultAnonymization: true
+    useDefaultBlockingPage: true
+    defaultBotSetting: true
+    defaultDetectionSettings: true
+    useLoadbalancerSetting: true
+  providerConfigRef:
+    name: default

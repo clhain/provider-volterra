@@ -1,0 +1,85 @@
+apiVersion: volterra.upbound.io/v1alpha1
+kind: GCPVPCSite
+metadata:
+  name: hello-crossplane-gcp-vpc
+spec:
+  forProvider:
+    name: hello-crossplane-gcp-vpc
+    namespace: "system"
+    labels:
+      "ves.io/siteName": "hello-crossplane-gcp-vpc"
+    cloudCredentials:
+      - nameRef:
+          name: hello-crossplane-test
+    gcpRegion: us-west1
+    instanceType: n1-standard-4
+    logsStreamingDisabled: true
+    ingressEgressGw:
+      - gcpCertifiedHw: "gcp-byol-multi-nic-voltmesh"
+        gcpZoneNames:
+          - us-west1-a
+        insideNetwork:
+          - newNetwork:
+              - name: hello-crossplane-inside-network
+        insideSubnet:
+          - newSubnet:
+              - primaryIpv4: 10.1.0.0/16
+                subnetName: hello-crossplane-inside-subnet
+        outsideNetwork:
+          - newNetwork:
+              - name: hello-crossplane-outside-network
+        outsideSubnet:
+          - newSubnet:
+              - primaryIpv4: 10.2.0.0/16
+                subnetName: hello-crossplane-outside-subnet
+        nodeNumber: 1
+  providerConfigRef:
+    name: default
+
+# //   resource "volterra_gcp_vpc_site" "this" {
+# // 	name      = "applab-${var.site_name}-gcp-vpc"
+# // 	namespace = "system"
+# // 	labels    = { "ves.io/siteName" = "applab-${var.site_name}-gcp-vpc" }
+
+# // 	// One of the arguments from this list "cloud_credentials assisted" must be set
+# // 	cloud_credentials {
+# // 	  name      = format("%s-cred", var.site_name)
+# // 	  namespace = "system"
+# // 	}
+
+# // 	gcp_region    = var.gcp_region
+# // 	instance_type = var.machine_type
+# // 	// One of the arguments from this list "log_receiver logs_streaming_disabled" must be set
+# // 	logs_streaming_disabled = true
+# // 	// One of the arguments from this list "ingress_gw ingress_egress_gw voltstack_cluster" must be set
+
+# // 	  ingress_egress_gw {
+# // 		  gcp_certified_hw = "gcp-byol-multi-nic-voltmesh"
+
+# // 	  gcp_zone_names = [var.gcp_zone]
+
+# // 	  inside_network {
+# // 		new_network {
+# // 		  name = "applab-${var.site_name}-inside-network"
+# // 		}
+# // 	  }
+# // 	  inside_subnet{
+# // 		new_subnet {
+# // 		  primary_ipv4 = var.inside_subnet
+# // 		  subnet_name = "applab-${var.site_name}-inside-subnet"
+# // 		}
+# // 	  }
+# // 	  outside_network {
+# // 		new_network {
+# // 		  name = "applab-${var.site_name}-outside-network"
+# // 		}
+# // 	  }
+# // 	  outside_subnet{
+# // 		new_subnet {
+# // 		  primary_ipv4 = var.outside_subnet
+# // 		  subnet_name = "applab-${var.site_name}-outside-subnet"
+# // 		}
+# // 	  }
+# // 	  node_number = var.node_number
+# // 	}
+# //   }

@@ -1,0 +1,143 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: foo-load-balancer
+  labels:
+    provider: volterra
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: volterra.upbound.io/v1alpha1
+    kind: XFooHTTPLB
+  resources:
+    - name: volterranamespace
+      base:
+        apiVersion: volterra.upbound.io/v1alpha1
+        kind: VolterraNamespace
+        spec:
+          forProvider:
+            name: foo
+      patches:
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-ns"
+    - name: volterraoriginpool
+      base:
+        apiVersion: volterra.upbound.io/v1alpha1
+        kind: OriginPool
+        spec:
+          forProvider:
+            name: foo
+            namespaceRef:
+              name: hello-crossplane-test
+            description: "Origin pool pointing to external service"
+            loadbalancerAlgorithm: "ROUND ROBIN"
+            port: 8080
+            noTls: true
+            endpointSelection: LOCAL_PREFERRED
+            originServers:
+              - publicName:
+                - dnsName: www.example.com
+      patches:
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-op"
+        - fromFieldPath: "spec.resourceRefs[0].name"
+          toFieldPath: "spec.forProvider.namespaceRef.name"
+        - fromFieldPath: "spec.parameters.originPort"
+          toFieldPath: "spec.forProvider.port"
+        - fromFieldPath: "spec.parameters.originFqdn"
+          toFieldPath: "spec.forProvider.originServers[0].publicName[0].dnsName"
+    - name: volterrawaf
+      base:
+        apiVersion: volterra.upbound.io/v1alpha1
+        kind: AppFirewall
+        spec:
+          forProvider:
+            name: hello-crossplane-waf
+            namespaceRef:
+              name: hello-crossplane-test
+            allowAllResponseCodes: true
+            defaultAnonymization: true
+            useDefaultBlockingPage: true
+            defaultBotSetting: true
+            defaultDetectionSettings: true
+            useLoadbalancerSetting: true
+      patches:
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-waf"
+        - fromFieldPath: "spec.resourceRefs[0].name"
+          toFieldPath: "spec.forProvider.namespaceRef.name"
+    - name: volterrahttplb
+      base:
+        apiVersion: volterra.upbound.io/v1alpha1
+        kind: HTTPLoadbalancer
+        spec:
+          forProvider:
+            name: hello-crossplane-lb
+            namespaceRef:
+              name: hello-crossplane-test
+            description: HTTPS loadbalancer object for external service
+            domains:
+              - "crossplane.demo.f5octo.dev"
+            advertiseOnPublicDefaultVip: false
+            defaultRoutePools:
+              - pool:
+                  - name: hello-crossplane
+                    namespace: hello-crossplane-test
+            httpsAutoCert:
+              - addHsts: true
+                httpRedirect: true
+                noMtls: true
+            appFirewall:
+              - name: hello-crossplane-waf
+                namespace: hello-crossplane-test
+            disableRateLimit: true
+            roundRobin: true
+            servicePoliciesFromNamespace: true
+            noChallenge: true
+      patches:
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-lb"
+        - fromFieldPath: "spec.resourceRefs[0].name"
+          toFieldPath: "spec.forProvider.namespaceRef.name"
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.defaultRoutePools[0].pool[0].namespace"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-ns"
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.defaultRoutePools[0].pool[0].name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-op"
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.appFirewall[0].namespace"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-ns"
+        - fromFieldPath: "spec.parameters.projectName"
+          toFieldPath: "spec.forProvider.appFirewall[0].name"
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-waf"
+        - fromFieldPath: "spec.parameters.fqdn"
+          toFieldPath: "spec.forProvider.domains[0]"

@@ -1,0 +1,9 @@
+apiVersion: volterra.upbound.io/v1alpha1
+kind: VolterraNamespace
+metadata:
+  name: hello-crossplane-test
+spec:
+  forProvider:
+    name: hello-crossplane-test
+  providerConfigRef:
+    name: default

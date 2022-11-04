@@ -1,0 +1,19 @@
+apiVersion: volterra.upbound.io/v1beta1
+kind: TFParamsAction
+metadata:
+  name: hello-crossplane-test
+spec:
+  forProvider:
+    siteNameRef:
+      name: hello-crossplane-gcp-vpc
+    siteKind: "gcp_vpc_site"
+    action: "apply"
+  providerConfigRef:
+    name: default
+
+# //   resource "volterra_tf_params_action" "this" {
+# // 	site_name  = "applab-${var.site_name}-gcp-vpc"
+# // 	site_kind  = "gcp_vpc_site"
+# // 	action     = "apply"
+# // 	depends_on = [volterra_gcp_vpc_site.this]
+# //   }

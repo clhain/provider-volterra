@@ -12,8 +12,18 @@ import (
 
 // A ProviderConfigSpec defines the desired state of a ProviderConfig.
 type ProviderConfigSpec struct {
-	// Credentials required to authenticate to this provider.
-	Credentials ProviderCredentials `json:"credentials"`
+	// // Credentials required to authenticate to this provider.
+	// Credentials ProviderCredentials `json:"credentials"`
+	// ApiP12File is the p12 bundle used to authenticate to the volterra api.
+	ApiP12File string `json:"apiP12File"`
+	// ApiCert is the path to the API cert file to auth against the volterra api.
+	ApiCert string `json:"apiCert"`
+	// ApiCert is the path to the API key file to auth against the volterra api.
+	ApiKey string `json:"apiKey"`
+	// URL is the endpoint to use for the volterra api.
+	URL string `json:"url"`
+	// Timeout is the api timeout in secods.
+	Timeout string `json:"timeout"`
 }
 
 // ProviderCredentials required to authenticate.

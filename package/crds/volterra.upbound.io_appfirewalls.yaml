@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resources.null.volterra.upbound.io
+  name: appfirewalls.volterra.upbound.io
 spec:
-  group: null.volterra.upbound.io
+  group: volterra.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - volterra
-    kind: Resource
-    listKind: ResourceList
-    plural: resources
-    singular: resource
+    kind: AppFirewall
+    listKind: AppFirewallList
+    plural: appfirewalls
+    singular: appfirewall
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Resource is the Schema for the Resources API. <no value>
+        description: AppFirewall is the Schema for the AppFirewalls API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceSpec defines the desired state of Resource
+            description: AppFirewallSpec defines the desired state of AppFirewall
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,13 +63,229 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  triggers:
+                  allowAllResponseCodes:
+                    type: boolean
+                  allowedResponseCodes:
+                    items:
+                      properties:
+                        responseCode:
+                          items:
+                            type: number
+                          type: array
+                      required:
+                      - responseCode
+                      type: object
+                    type: array
+                  annotations:
                     additionalProperties:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
                     type: object
+                  blocking:
+                    type: boolean
+                  blockingPage:
+                    items:
+                      properties:
+                        blockingPage:
+                          type: string
+                        responseCode:
+                          type: string
+                      type: object
+                    type: array
+                  botProtectionSetting:
+                    items:
+                      properties:
+                        goodBotAction:
+                          type: string
+                        maliciousBotAction:
+                          type: string
+                        suspiciousBotAction:
+                          type: string
+                      type: object
+                    type: array
+                  customAnonymization:
+                    items:
+                      properties:
+                        anonymizationConfig:
+                          items:
+                            properties:
+                              cookie:
+                                items:
+                                  properties:
+                                    cookieName:
+                                      type: string
+                                  type: object
+                                type: array
+                              httpHeader:
+                                items:
+                                  properties:
+                                    headerName:
+                                      type: string
+                                  type: object
+                                type: array
+                              queryParameter:
+                                items:
+                                  properties:
+                                    queryParamName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  defaultAnonymization:
+                    type: boolean
+                  defaultBotSetting:
+                    type: boolean
+                  defaultDetectionSettings:
+                    type: boolean
+                  description:
+                    type: string
+                  detectionSettings:
+                    items:
+                      properties:
+                        defaultViolationSettings:
+                          type: boolean
+                        disableSuppression:
+                          type: boolean
+                        disableThreatCampaigns:
+                          type: boolean
+                        enableSuppression:
+                          type: boolean
+                        enableThreatCampaigns:
+                          type: boolean
+                        signatureSelectionSetting:
+                          items:
+                            properties:
+                              attackTypeSettings:
+                                items:
+                                  properties:
+                                    disabledAttackTypes:
+                                      items:
+                                        type: string
+                                      type: array
+                                  required:
+                                  - disabledAttackTypes
+                                  type: object
+                                type: array
+                              defaultAttackTypeSettings:
+                                type: boolean
+                              highMediumAccuracySignatures:
+                                type: boolean
+                              highMediumLowAccuracySignatures:
+                                type: boolean
+                              onlyHighAccuracySignatures:
+                                type: boolean
+                            type: object
+                          type: array
+                        violationSettings:
+                          items:
+                            properties:
+                              disabledViolationTypes:
+                                items:
+                                  type: string
+                                type: array
+                            required:
+                            - disabledViolationTypes
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  disable:
+                    type: boolean
+                  disableAnonymization:
+                    type: boolean
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  monitoring:
+                    type: boolean
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  namespaceRef:
+                    description: Reference to a VolterraNamespace in volterra to populate
+                      namespace.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  namespaceSelector:
+                    description: Selector for a VolterraNamespace in volterra to populate
+                      namespace.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  useDefaultBlockingPage:
+                    type: boolean
+                  useLoadbalancerSetting:
+                    type: boolean
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -243,7 +459,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceStatus defines the observed state of Resource.
+            description: AppFirewallStatus defines the observed state of AppFirewall.
             properties:
               atProvider:
                 properties:

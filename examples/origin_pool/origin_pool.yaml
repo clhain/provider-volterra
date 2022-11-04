@@ -1,0 +1,20 @@
+apiVersion: volterra.upbound.io/v1alpha1
+kind: OriginPool
+metadata:
+  name: hello-crossplane-origin-pool
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: hello-crossplane
+    namespaceRef:
+      name: hello-crossplane-test
+    description: "Origin pool pointing to external service"
+    loadbalancerAlgorithm: "ROUND ROBIN"
+    port: 8080
+    noTls: true
+    endpointSelection: LOCAL_PREFERRED
+    originServers:
+      - publicName:
+         - dnsName: www.example.com
+

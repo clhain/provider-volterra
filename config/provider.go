@@ -37,6 +37,7 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
+			groupOverrides(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){

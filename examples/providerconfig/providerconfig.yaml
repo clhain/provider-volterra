@@ -3,9 +3,8 @@ kind: ProviderConfig
 metadata:
   name: default
 spec:
-  credentials:
-    source: Secret
-    secretRef:
-      name: example-creds
-      namespace: crossplane-system
-      key: credentials
+  url: https://f5-octo.console.ves.volterra.io/api/
+  apiKey: "/tmp/creds/api.key"
+  apiCert: "/tmp/creds/api.cert"
+  apiP12File: ""
+  timeout: 60s

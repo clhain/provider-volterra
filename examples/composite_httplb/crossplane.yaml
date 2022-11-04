@@ -1,0 +1,13 @@
+apiVersion: meta.pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: getting-started-with-volterra
+  annotations:
+    guide: quickstart
+    provider: volterra
+spec:
+  crossplane:
+    version: ">=v1.4.0-0"
+  dependsOn:
+    - provider: clhainf5/provider-volterra
+      version: ">=v0.0.0-6.g71483b3"

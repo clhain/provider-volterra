@@ -1,0 +1,1690 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: gcpvpcsites.volterra.upbound.io
+spec:
+  group: volterra.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - volterra
+    kind: GCPVPCSite
+    listKind: GCPVPCSiteList
+    plural: gcpvpcsites
+    singular: gcpvpcsite
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: GCPVPCSite is the Schema for the GCPVPCSites API. <no value>
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: GCPVPCSiteSpec defines the desired state of GCPVPCSite
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  address:
+                    type: string
+                  annotations:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  blockedServices:
+                    items:
+                      properties:
+                        blockedSevice:
+                          items:
+                            properties:
+                              dns:
+                                type: boolean
+                              networkType:
+                                type: string
+                              ssh:
+                                type: boolean
+                              webUserInterface:
+                                type: boolean
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  cloudCredentials:
+                    items:
+                      properties:
+                        name:
+                          type: string
+                        nameRef:
+                          description: Reference to a CloudCredentials in volterra
+                            to populate name.
+                          properties:
+                            name:
+                              description: Name of the referenced object.
+                              type: string
+                            policy:
+                              description: Policies for referencing.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          required:
+                          - name
+                          type: object
+                        nameSelector:
+                          description: Selector for a CloudCredentials in volterra
+                            to populate name.
+                          properties:
+                            matchControllerRef:
+                              description: MatchControllerRef ensures an object with
+                                the same controller reference as the selecting object
+                                is selected.
+                              type: boolean
+                            matchLabels:
+                              additionalProperties:
+                                type: string
+                              description: MatchLabels ensures an object with matching
+                                labels is selected.
+                              type: object
+                            policy:
+                              description: Policies for selection.
+                              properties:
+                                resolution:
+                                  default: Required
+                                  description: Resolution specifies whether resolution
+                                    of this reference is required. The default is
+                                    'Required', which means the reconcile will fail
+                                    if the reference cannot be resolved. 'Optional'
+                                    means this reference will be a no-op if it cannot
+                                    be resolved.
+                                  enum:
+                                  - Required
+                                  - Optional
+                                  type: string
+                                resolve:
+                                  description: Resolve specifies when this reference
+                                    should be resolved. The default is 'IfNotPresent',
+                                    which will attempt to resolve the reference only
+                                    when the corresponding field is not present. Use
+                                    'Always' to resolve the reference on every reconcile.
+                                  enum:
+                                  - Always
+                                  - IfNotPresent
+                                  type: string
+                              type: object
+                          type: object
+                        namespace:
+                          type: string
+                        tenant:
+                          type: string
+                      type: object
+                    type: array
+                  coordinates:
+                    items:
+                      properties:
+                        latitude:
+                          type: number
+                        longitude:
+                          type: number
+                      type: object
+                    type: array
+                  defaultBlockedServices:
+                    type: boolean
+                  description:
+                    type: string
+                  disable:
+                    type: boolean
+                  diskSize:
+                    type: number
+                  gcpLabels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  gcpRegion:
+                    type: string
+                  ingressEgressGw:
+                    items:
+                      properties:
+                        activeForwardProxyPolicies:
+                          items:
+                            properties:
+                              forwardProxyPolicies:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                    namespace:
+                                      type: string
+                                    tenant:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        activeNetworkPolicies:
+                          items:
+                            properties:
+                              networkPolicies:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                    namespace:
+                                      type: string
+                                    tenant:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        dcClusterGroupInsideVn:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              namespace:
+                                type: string
+                              tenant:
+                                type: string
+                            type: object
+                          type: array
+                        dcClusterGroupOutsideVn:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              namespace:
+                                type: string
+                              tenant:
+                                type: string
+                            type: object
+                          type: array
+                        forwardProxyAllowAll:
+                          type: boolean
+                        gcpCertifiedHw:
+                          type: string
+                        gcpZoneNames:
+                          items:
+                            type: string
+                          type: array
+                        globalNetworkList:
+                          items:
+                            properties:
+                              globalNetworkConnections:
+                                items:
+                                  properties:
+                                    disableForwardProxy:
+                                      type: boolean
+                                    enableForwardProxy:
+                                      items:
+                                        properties:
+                                          connectionTimeout:
+                                            type: number
+                                          maxConnectAttempts:
+                                            type: number
+                                          noInterception:
+                                            type: boolean
+                                          tlsIntercept:
+                                            items:
+                                              properties:
+                                                customCertificate:
+                                                  items:
+                                                    properties:
+                                                      certificateUrl:
+                                                        type: string
+                                                      customHashAlgorithms:
+                                                        items:
+                                                          properties:
+                                                            hashAlgorithms:
+                                                              items:
+                                                                type: string
+                                                              type: array
+                                                          required:
+                                                          - hashAlgorithms
+                                                          type: object
+                                                        type: array
+                                                      description:
+                                                        type: string
+                                                      disableOcspStapling:
+                                                        items:
+                                                          type: object
+                                                        type: array
+                                                      privateKey:
+                                                        items:
+                                                          properties:
+                                                            blindfoldSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  decryptionProvider:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  storeProvider:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            blindfoldSecretInfoInternal:
+                                                              items:
+                                                                properties:
+                                                                  decryptionProvider:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  storeProvider:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            clearSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  provider:
+                                                                    type: string
+                                                                  url:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            secretEncodingType:
+                                                              type: string
+                                                            vaultSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  key:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  provider:
+                                                                    type: string
+                                                                  secretEncoding:
+                                                                    type: string
+                                                                  version:
+                                                                    type: number
+                                                                type: object
+                                                              type: array
+                                                            wingmanSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  name:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                          type: object
+                                                        type: array
+                                                      useSystemDefaults:
+                                                        items:
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                enableForAllDomains:
+                                                  type: boolean
+                                                policy:
+                                                  items:
+                                                    properties:
+                                                      interceptionRules:
+                                                        items:
+                                                          properties:
+                                                            disableInterception:
+                                                              type: boolean
+                                                            domainMatch:
+                                                              items:
+                                                                properties:
+                                                                  exactValue:
+                                                                    type: string
+                                                                  regexValue:
+                                                                    type: string
+                                                                  suffixValue:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            enableInterception:
+                                                              type: boolean
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                trustedCaUrl:
+                                                  type: string
+                                                volterraCertificate:
+                                                  type: boolean
+                                                volterraTrustedCa:
+                                                  type: boolean
+                                              type: object
+                                            type: array
+                                          whiteListedPorts:
+                                            items:
+                                              type: number
+                                            type: array
+                                          whiteListedPrefixes:
+                                            items:
+                                              type: string
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sliToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                name:
+                                                  type: string
+                                                namespace:
+                                                  type: string
+                                                tenant:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sloToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                name:
+                                                  type: string
+                                                namespace:
+                                                  type: string
+                                                tenant:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        insideNetwork:
+                          items:
+                            properties:
+                              existingNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetworkAutogenerate:
+                                items:
+                                  properties:
+                                    autogenerate:
+                                      type: boolean
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        insideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          attrs:
+                                            items:
+                                              type: string
+                                            type: array
+                                          labels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      name:
+                                                        type: string
+                                                      namespace:
+                                                        type: string
+                                                      tenant:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                nexthopAddress:
+                                                  items:
+                                                    properties:
+                                                      ipv4:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                      ipv6:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                type:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          subnets:
+                                            items:
+                                              properties:
+                                                ipv4:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                ipv6:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    simpleStaticRoute:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        insideSubnet:
+                          items:
+                            properties:
+                              existingSubnet:
+                                items:
+                                  properties:
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                              newSubnet:
+                                items:
+                                  properties:
+                                    primaryIpv4:
+                                      type: string
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        noDcClusterGroup:
+                          type: boolean
+                        noForwardProxy:
+                          type: boolean
+                        noGlobalNetwork:
+                          type: boolean
+                        noInsideStaticRoutes:
+                          type: boolean
+                        noNetworkPolicy:
+                          type: boolean
+                        noOutsideStaticRoutes:
+                          type: boolean
+                        nodeNumber:
+                          type: number
+                        outsideNetwork:
+                          items:
+                            properties:
+                              existingNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetworkAutogenerate:
+                                items:
+                                  properties:
+                                    autogenerate:
+                                      type: boolean
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        outsideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          attrs:
+                                            items:
+                                              type: string
+                                            type: array
+                                          labels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      name:
+                                                        type: string
+                                                      namespace:
+                                                        type: string
+                                                      tenant:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                nexthopAddress:
+                                                  items:
+                                                    properties:
+                                                      ipv4:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                      ipv6:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                type:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          subnets:
+                                            items:
+                                              properties:
+                                                ipv4:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                ipv6:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    simpleStaticRoute:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        outsideSubnet:
+                          items:
+                            properties:
+                              existingSubnet:
+                                items:
+                                  properties:
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                              newSubnet:
+                                items:
+                                  properties:
+                                    primaryIpv4:
+                                      type: string
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        smConnectionPublicIp:
+                          type: boolean
+                        smConnectionPvtIp:
+                          type: boolean
+                      required:
+                      - gcpZoneNames
+                      type: object
+                    type: array
+                  ingressGw:
+                    items:
+                      properties:
+                        gcpCertifiedHw:
+                          type: string
+                        gcpZoneNames:
+                          items:
+                            type: string
+                          type: array
+                        localNetwork:
+                          items:
+                            properties:
+                              existingNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetworkAutogenerate:
+                                items:
+                                  properties:
+                                    autogenerate:
+                                      type: boolean
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        localSubnet:
+                          items:
+                            properties:
+                              existingSubnet:
+                                items:
+                                  properties:
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                              newSubnet:
+                                items:
+                                  properties:
+                                    primaryIpv4:
+                                      type: string
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        nodeNumber:
+                          type: number
+                      required:
+                      - gcpZoneNames
+                      type: object
+                    type: array
+                  instanceType:
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  logReceiver:
+                    items:
+                      properties:
+                        name:
+                          type: string
+                        namespace:
+                          type: string
+                        tenant:
+                          type: string
+                      type: object
+                    type: array
+                  logsStreamingDisabled:
+                    type: boolean
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  nodesPerAz:
+                    type: number
+                  offlineSurvivabilityMode:
+                    items:
+                      properties:
+                        enableOfflineSurvivabilityMode:
+                          type: boolean
+                        noOfflineSurvivabilityMode:
+                          type: boolean
+                      type: object
+                    type: array
+                  os:
+                    items:
+                      properties:
+                        defaultOsVersion:
+                          type: boolean
+                        operatingSystemVersion:
+                          type: string
+                      type: object
+                    type: array
+                  siteLocalControlPlane:
+                    items:
+                      properties:
+                        defaultLocalControlPlane:
+                          type: boolean
+                        noLocalControlPlane:
+                          type: boolean
+                      type: object
+                    type: array
+                  sshKey:
+                    type: string
+                  sw:
+                    items:
+                      properties:
+                        defaultSwVersion:
+                          type: boolean
+                        volterraSoftwareVersion:
+                          type: string
+                      type: object
+                    type: array
+                  voltstackCluster:
+                    items:
+                      properties:
+                        activeForwardProxyPolicies:
+                          items:
+                            properties:
+                              forwardProxyPolicies:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                    namespace:
+                                      type: string
+                                    tenant:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        activeNetworkPolicies:
+                          items:
+                            properties:
+                              networkPolicies:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                    namespace:
+                                      type: string
+                                    tenant:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        dcClusterGroup:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              namespace:
+                                type: string
+                              tenant:
+                                type: string
+                            type: object
+                          type: array
+                        defaultStorage:
+                          type: boolean
+                        forwardProxyAllowAll:
+                          type: boolean
+                        gcpCertifiedHw:
+                          type: string
+                        gcpZoneNames:
+                          items:
+                            type: string
+                          type: array
+                        globalNetworkList:
+                          items:
+                            properties:
+                              globalNetworkConnections:
+                                items:
+                                  properties:
+                                    disableForwardProxy:
+                                      type: boolean
+                                    enableForwardProxy:
+                                      items:
+                                        properties:
+                                          connectionTimeout:
+                                            type: number
+                                          maxConnectAttempts:
+                                            type: number
+                                          noInterception:
+                                            type: boolean
+                                          tlsIntercept:
+                                            items:
+                                              properties:
+                                                customCertificate:
+                                                  items:
+                                                    properties:
+                                                      certificateUrl:
+                                                        type: string
+                                                      customHashAlgorithms:
+                                                        items:
+                                                          properties:
+                                                            hashAlgorithms:
+                                                              items:
+                                                                type: string
+                                                              type: array
+                                                          required:
+                                                          - hashAlgorithms
+                                                          type: object
+                                                        type: array
+                                                      description:
+                                                        type: string
+                                                      disableOcspStapling:
+                                                        items:
+                                                          type: object
+                                                        type: array
+                                                      privateKey:
+                                                        items:
+                                                          properties:
+                                                            blindfoldSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  decryptionProvider:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  storeProvider:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            blindfoldSecretInfoInternal:
+                                                              items:
+                                                                properties:
+                                                                  decryptionProvider:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  storeProvider:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            clearSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  provider:
+                                                                    type: string
+                                                                  url:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            secretEncodingType:
+                                                              type: string
+                                                            vaultSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  key:
+                                                                    type: string
+                                                                  location:
+                                                                    type: string
+                                                                  provider:
+                                                                    type: string
+                                                                  secretEncoding:
+                                                                    type: string
+                                                                  version:
+                                                                    type: number
+                                                                type: object
+                                                              type: array
+                                                            wingmanSecretInfo:
+                                                              items:
+                                                                properties:
+                                                                  name:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                          type: object
+                                                        type: array
+                                                      useSystemDefaults:
+                                                        items:
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                enableForAllDomains:
+                                                  type: boolean
+                                                policy:
+                                                  items:
+                                                    properties:
+                                                      interceptionRules:
+                                                        items:
+                                                          properties:
+                                                            disableInterception:
+                                                              type: boolean
+                                                            domainMatch:
+                                                              items:
+                                                                properties:
+                                                                  exactValue:
+                                                                    type: string
+                                                                  regexValue:
+                                                                    type: string
+                                                                  suffixValue:
+                                                                    type: string
+                                                                type: object
+                                                              type: array
+                                                            enableInterception:
+                                                              type: boolean
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                trustedCaUrl:
+                                                  type: string
+                                                volterraCertificate:
+                                                  type: boolean
+                                                volterraTrustedCa:
+                                                  type: boolean
+                                              type: object
+                                            type: array
+                                          whiteListedPorts:
+                                            items:
+                                              type: number
+                                            type: array
+                                          whiteListedPrefixes:
+                                            items:
+                                              type: string
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sliToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                name:
+                                                  type: string
+                                                namespace:
+                                                  type: string
+                                                tenant:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sloToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                name:
+                                                  type: string
+                                                namespace:
+                                                  type: string
+                                                tenant:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        k8sCluster:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              namespace:
+                                type: string
+                              tenant:
+                                type: string
+                            type: object
+                          type: array
+                        noDcClusterGroup:
+                          type: boolean
+                        noForwardProxy:
+                          type: boolean
+                        noGlobalNetwork:
+                          type: boolean
+                        noK8SCluster:
+                          type: boolean
+                        noNetworkPolicy:
+                          type: boolean
+                        noOutsideStaticRoutes:
+                          type: boolean
+                        nodeNumber:
+                          type: number
+                        outsideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          attrs:
+                                            items:
+                                              type: string
+                                            type: array
+                                          labels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      name:
+                                                        type: string
+                                                      namespace:
+                                                        type: string
+                                                      tenant:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                nexthopAddress:
+                                                  items:
+                                                    properties:
+                                                      ipv4:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                      ipv6:
+                                                        items:
+                                                          properties:
+                                                            addr:
+                                                              type: string
+                                                          type: object
+                                                        type: array
+                                                    type: object
+                                                  type: array
+                                                type:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          subnets:
+                                            items:
+                                              properties:
+                                                ipv4:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                                ipv6:
+                                                  items:
+                                                    properties:
+                                                      plen:
+                                                        type: number
+                                                      prefix:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    simpleStaticRoute:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        siteLocalNetwork:
+                          items:
+                            properties:
+                              existingNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetwork:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  type: object
+                                type: array
+                              newNetworkAutogenerate:
+                                items:
+                                  properties:
+                                    autogenerate:
+                                      type: boolean
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        siteLocalSubnet:
+                          items:
+                            properties:
+                              existingSubnet:
+                                items:
+                                  properties:
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                              newSubnet:
+                                items:
+                                  properties:
+                                    primaryIpv4:
+                                      type: string
+                                    subnetName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        smConnectionPublicIp:
+                          type: boolean
+                        smConnectionPvtIp:
+                          type: boolean
+                        storageClassList:
+                          items:
+                            properties:
+                              storageClasses:
+                                items:
+                                  properties:
+                                    defaultStorageClass:
+                                      type: boolean
+                                    openebsEnterprise:
+                                      items:
+                                        properties:
+                                          replication:
+                                            type: number
+                                          storageClassSize:
+                                            type: number
+                                        type: object
+                                      type: array
+                                    storageClassName:
+                                      type: string
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      required:
+                      - gcpZoneNames
+                      type: object
+                    type: array
+                required:
+                - gcpRegion
+                - instanceType
+                - name
+                - namespace
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: GCPVPCSiteStatus defines the observed state of GCPVPCSite.
+            properties:
+              atProvider:
+                properties:
+                  id:
+                    type: string
+                  ingressEgressGw:
+                    items:
+                      properties:
+                        globalNetworkList:
+                          items:
+                            properties:
+                              globalNetworkConnections:
+                                items:
+                                  properties:
+                                    sliToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                kind:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sloToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                kind:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        insideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      kind:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        outsideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      kind:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  voltstackCluster:
+                    items:
+                      properties:
+                        globalNetworkList:
+                          items:
+                            properties:
+                              globalNetworkConnections:
+                                items:
+                                  properties:
+                                    sliToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                kind:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    sloToGlobalDr:
+                                      items:
+                                        properties:
+                                          globalVn:
+                                            items:
+                                              properties:
+                                                kind:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                        outsideStaticRoutes:
+                          items:
+                            properties:
+                              staticRouteList:
+                                items:
+                                  properties:
+                                    customStaticRoute:
+                                      items:
+                                        properties:
+                                          nexthop:
+                                            items:
+                                              properties:
+                                                interface:
+                                                  items:
+                                                    properties:
+                                                      kind:
+                                                        type: string
+                                                    type: object
+                                                  type: array
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

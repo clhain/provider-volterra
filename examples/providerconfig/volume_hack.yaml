@@ -1,0 +1,48 @@
+# Because Volterra provider relies on files rather than env for secrets, we
+# have to mount them to the pod created by the crossplane controller. Unfortumately
+# there's no way to do this using the controller config. Found this workaround in https://github.com/crossplane/crossplane/issues/2535.
+
+# helm repo add kyverno https://kyverno.github.io/kyverno/
+# helm repo update
+# helm install kyverno kyverno/kyverno -n kyverno --create-namespace --set replicaCount=1
+
+# * Run `openssl pkcs12 -in <.p12 file> -clcerts -nokeys -out api.cert`. This will require entering the password that was used to generate the `.p12` 
+# * Run `openssl pkcs12 -in <.p12 file> -nocerts -out privateKey.pem`. This will require entering the password that was used to generate the `.p12` 
+# * Run `openssl rsa -in privateKey.pem -out api.key`. This will require entering the password that was used to generate the `.p12`
+
+# kubectl create secret generic f5xc-creds --from-file api.key --from-file api.cert
+# helm upgrade --install crossplane --namespace crossplane-system crossplane-stable/crossplane --create-namespace --wait --atomic --set provider.packages[0]=clhainf5/provider-jet-volterra:v0.0.0-6.g71483b3
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: policy-volterra-api-creds
+spec:
+  rules:
+    - name: "Add Volterra API Creds to Provider"
+      match:
+        resources:
+          namespaces:
+            - crossplane-system
+          kinds:
+            - Pod
+          names:
+            - "clhainf5-provider-volterra-*"
+      mutate:
+        patchStrategicMerge:
+          spec:
+            containers:
+              - (name): "*"
+                volumeMounts:
+                  - name: f5xc-creds
+                    mountPath: /tmp/creds
+                    readOnly: true
+            volumes:
+              - name: f5xc-creds
+                secret:
+                  secretName: f5xc-creds
+                  items:
+                    - key: api.key
+                      path: api.key
+                    - key: api.cert
+                      path: api.cert
