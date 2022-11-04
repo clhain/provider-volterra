@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/clhainf5/provider-volterra
 
 go 1.19
 
