@@ -1,4 +1,4 @@
 apiVersion: meta.pkg.crossplane.io/v1alpha1
 kind: Provider
 metadata:
-  name: provider-volterra
+  name: clhainf5/provider-volterra
