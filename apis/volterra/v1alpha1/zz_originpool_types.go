@@ -127,21 +127,6 @@ type EndpointSubsetsParameters struct {
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 }
 
-type HealthcheckObservation struct {
-}
-
-type HealthcheckParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
 type Http2OptionsObservation struct {
 }
 
@@ -273,6 +258,21 @@ type OriginPoolAdvancedOptionsParameters struct {
 	PanicThreshold *float64 `json:"panicThreshold,omitempty" tf:"panic_threshold,omitempty"`
 }
 
+type OriginPoolHealthcheckObservation struct {
+}
+
+type OriginPoolHealthcheckParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
 type OriginPoolObservation_2 struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -304,7 +304,7 @@ type OriginPoolParameters_2 struct {
 	HealthCheckPort *float64 `json:"healthCheckPort,omitempty" tf:"health_check_port,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Healthcheck []HealthcheckParameters `json:"healthcheck,omitempty" tf:"healthcheck,omitempty"`
+	Healthcheck []OriginPoolHealthcheckParameters `json:"healthcheck,omitempty" tf:"healthcheck,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`

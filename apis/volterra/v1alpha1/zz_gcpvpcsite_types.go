@@ -13,67 +13,10 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ActiveForwardProxyPoliciesForwardProxyPoliciesObservation struct {
+type BlockedServicesBlockedSeviceObservation struct {
 }
 
-type ActiveForwardProxyPoliciesForwardProxyPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type ActiveForwardProxyPoliciesObservation struct {
-}
-
-type ActiveForwardProxyPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ForwardProxyPolicies []ForwardProxyPoliciesParameters `json:"forwardProxyPolicies,omitempty" tf:"forward_proxy_policies,omitempty"`
-}
-
-type ActiveNetworkPoliciesNetworkPoliciesObservation struct {
-}
-
-type ActiveNetworkPoliciesNetworkPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type ActiveNetworkPoliciesObservation struct {
-}
-
-type ActiveNetworkPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	NetworkPolicies []NetworkPoliciesParameters `json:"networkPolicies,omitempty" tf:"network_policies,omitempty"`
-}
-
-type BlockedServicesObservation struct {
-}
-
-type BlockedServicesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	BlockedSevice []BlockedSeviceParameters `json:"blockedSevice,omitempty" tf:"blocked_sevice,omitempty"`
-}
-
-type BlockedSeviceObservation struct {
-}
-
-type BlockedSeviceParameters struct {
+type BlockedServicesBlockedSeviceParameters struct {
 
 	// +kubebuilder:validation:Optional
 	DNS *bool `json:"dns,omitempty" tf:"dns,omitempty"`
@@ -86,57 +29,6 @@ type BlockedSeviceParameters struct {
 
 	// +kubebuilder:validation:Optional
 	WebUserInterface *bool `json:"webUserInterface,omitempty" tf:"web_user_interface,omitempty"`
-}
-
-type CoordinatesObservation struct {
-}
-
-type CoordinatesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
-}
-
-type CustomCertificateCustomHashAlgorithmsObservation struct {
-}
-
-type CustomCertificateCustomHashAlgorithmsParameters struct {
-
-	// +kubebuilder:validation:Required
-	HashAlgorithms []*string `json:"hashAlgorithms" tf:"hash_algorithms,omitempty"`
-}
-
-type CustomCertificateDisableOcspStaplingObservation struct {
-}
-
-type CustomCertificateDisableOcspStaplingParameters struct {
-}
-
-type CustomCertificateObservation struct {
-}
-
-type CustomCertificateParameters struct {
-
-	// +kubebuilder:validation:Optional
-	CertificateURL *string `json:"certificateUrl,omitempty" tf:"certificate_url,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	CustomHashAlgorithms []CustomHashAlgorithmsParameters `json:"customHashAlgorithms,omitempty" tf:"custom_hash_algorithms,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DisableOcspStapling []DisableOcspStaplingParameters `json:"disableOcspStapling,omitempty" tf:"disable_ocsp_stapling,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	PrivateKey []PrivateKeyParameters `json:"privateKey,omitempty" tf:"private_key,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	UseSystemDefaults []UseSystemDefaultsParameters `json:"useSystemDefaults,omitempty" tf:"use_system_defaults,omitempty"`
 }
 
 type CustomCertificatePrivateKeyBlindfoldSecretInfoInternalObservation struct {
@@ -181,30 +73,6 @@ type CustomCertificatePrivateKeyClearSecretInfoParameters struct {
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
-type CustomCertificatePrivateKeyObservation struct {
-}
-
-type CustomCertificatePrivateKeyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfo []CustomCertificatePrivateKeyBlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfoInternal []CustomCertificatePrivateKeyBlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ClearSecretInfo []CustomCertificatePrivateKeyClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SecretEncodingType *string `json:"secretEncodingType,omitempty" tf:"secret_encoding_type,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VaultSecretInfo []CustomCertificatePrivateKeyVaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WingmanSecretInfo []CustomCertificatePrivateKeyWingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
-}
-
 type CustomCertificatePrivateKeyVaultSecretInfoObservation struct {
 }
 
@@ -235,236 +103,115 @@ type CustomCertificatePrivateKeyWingmanSecretInfoParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type CustomCertificateUseSystemDefaultsObservation struct {
+type CustomStaticRouteNexthopNexthopAddressIPv4Observation struct {
 }
 
-type CustomCertificateUseSystemDefaultsParameters struct {
+type CustomStaticRouteNexthopNexthopAddressIPv4Parameters struct {
+
+	// +kubebuilder:validation:Optional
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
 }
 
-type CustomHashAlgorithmsObservation struct {
+type CustomStaticRouteNexthopNexthopAddressIPv6Observation struct {
 }
 
-type CustomHashAlgorithmsParameters struct {
+type CustomStaticRouteNexthopNexthopAddressIPv6Parameters struct {
+
+	// +kubebuilder:validation:Optional
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
+}
+
+type EnableForwardProxyTLSInterceptCustomCertificateCustomHashAlgorithmsObservation struct {
+}
+
+type EnableForwardProxyTLSInterceptCustomCertificateCustomHashAlgorithmsParameters struct {
 
 	// +kubebuilder:validation:Required
 	HashAlgorithms []*string `json:"hashAlgorithms" tf:"hash_algorithms,omitempty"`
 }
 
-type CustomStaticRouteNexthopInterfaceObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+type EnableForwardProxyTLSInterceptCustomCertificateDisableOcspStaplingObservation struct {
 }
 
-type CustomStaticRouteNexthopInterfaceParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+type EnableForwardProxyTLSInterceptCustomCertificateDisableOcspStaplingParameters struct {
 }
 
-type CustomStaticRouteNexthopNexthopAddressObservation struct {
+type EnableForwardProxyTLSInterceptCustomCertificateObservation struct {
 }
 
-type CustomStaticRouteNexthopNexthopAddressParameters struct {
+type EnableForwardProxyTLSInterceptCustomCertificateParameters struct {
 
 	// +kubebuilder:validation:Optional
-	IPv4 []NexthopNexthopAddressIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+	CertificateURL *string `json:"certificateUrl,omitempty" tf:"certificate_url,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	IPv6 []NexthopNexthopAddressIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+	CustomHashAlgorithms []TLSInterceptCustomCertificateCustomHashAlgorithmsParameters `json:"customHashAlgorithms,omitempty" tf:"custom_hash_algorithms,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DisableOcspStapling []TLSInterceptCustomCertificateDisableOcspStaplingParameters `json:"disableOcspStapling,omitempty" tf:"disable_ocsp_stapling,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PrivateKey []TLSInterceptCustomCertificatePrivateKeyParameters `json:"privateKey,omitempty" tf:"private_key,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	UseSystemDefaults []TLSInterceptCustomCertificateUseSystemDefaultsParameters `json:"useSystemDefaults,omitempty" tf:"use_system_defaults,omitempty"`
 }
 
-type CustomStaticRouteNexthopObservation struct {
-
-	// +kubebuilder:validation:Optional
-	Interface []NexthopInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
+type EnableForwardProxyTLSInterceptCustomCertificatePrivateKeyObservation struct {
 }
 
-type CustomStaticRouteNexthopParameters struct {
+type EnableForwardProxyTLSInterceptCustomCertificatePrivateKeyParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Interface []NexthopInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+	BlindfoldSecretInfo []TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	NexthopAddress []NexthopNexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
+	BlindfoldSecretInfoInternal []TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+	ClearSecretInfo []TLSInterceptCustomCertificatePrivateKeyClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SecretEncodingType *string `json:"secretEncodingType,omitempty" tf:"secret_encoding_type,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VaultSecretInfo []TLSInterceptCustomCertificatePrivateKeyVaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WingmanSecretInfo []TLSInterceptCustomCertificatePrivateKeyWingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
 }
 
-type CustomStaticRouteObservation struct {
-
-	// +kubebuilder:validation:Optional
-	Nexthop []NexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+type EnableForwardProxyTLSInterceptCustomCertificateUseSystemDefaultsObservation struct {
 }
 
-type CustomStaticRouteParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Attrs []*string `json:"attrs,omitempty" tf:"attrs,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Nexthop []NexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Subnets []SubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
+type EnableForwardProxyTLSInterceptCustomCertificateUseSystemDefaultsParameters struct {
 }
 
-type CustomStaticRouteSubnetsIPv4Observation struct {
+type EnableForwardProxyTLSInterceptPolicyInterceptionRulesObservation struct {
 }
 
-type CustomStaticRouteSubnetsIPv4Parameters struct {
+type EnableForwardProxyTLSInterceptPolicyInterceptionRulesParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
+	DisableInterception *bool `json:"disableInterception,omitempty" tf:"disable_interception,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+	DomainMatch []TLSInterceptPolicyInterceptionRulesDomainMatchParameters `json:"domainMatch,omitempty" tf:"domain_match,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableInterception *bool `json:"enableInterception,omitempty" tf:"enable_interception,omitempty"`
 }
 
-type CustomStaticRouteSubnetsIPv6Observation struct {
+type EnableForwardProxyTLSInterceptPolicyObservation struct {
 }
 
-type CustomStaticRouteSubnetsIPv6Parameters struct {
+type EnableForwardProxyTLSInterceptPolicyParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
-}
-
-type CustomStaticRouteSubnetsObservation struct {
-}
-
-type CustomStaticRouteSubnetsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	IPv4 []CustomStaticRouteSubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IPv6 []CustomStaticRouteSubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
-}
-
-type DcClusterGroupInsideVnObservation struct {
-}
-
-type DcClusterGroupInsideVnParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type DcClusterGroupObservation struct {
-}
-
-type DcClusterGroupOutsideVnObservation struct {
-}
-
-type DcClusterGroupOutsideVnParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type DcClusterGroupParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type DisableOcspStaplingObservation struct {
-}
-
-type DisableOcspStaplingParameters struct {
-}
-
-type DomainMatchObservation struct {
-}
-
-type DomainMatchParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ExactValue *string `json:"exactValue,omitempty" tf:"exact_value,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	RegexValue *string `json:"regexValue,omitempty" tf:"regex_value,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SuffixValue *string `json:"suffixValue,omitempty" tf:"suffix_value,omitempty"`
-}
-
-type EnableForwardProxyObservation struct {
-}
-
-type EnableForwardProxyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ConnectionTimeout *float64 `json:"connectionTimeout,omitempty" tf:"connection_timeout,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	MaxConnectAttempts *float64 `json:"maxConnectAttempts,omitempty" tf:"max_connect_attempts,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoInterception *bool `json:"noInterception,omitempty" tf:"no_interception,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	TLSIntercept []TLSInterceptParameters `json:"tlsIntercept,omitempty" tf:"tls_intercept,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WhiteListedPorts []*float64 `json:"whiteListedPorts,omitempty" tf:"white_listed_ports,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WhiteListedPrefixes []*string `json:"whiteListedPrefixes,omitempty" tf:"white_listed_prefixes,omitempty"`
-}
-
-type EnableForwardProxyTLSInterceptObservation struct {
-}
-
-type EnableForwardProxyTLSInterceptParameters struct {
-
-	// +kubebuilder:validation:Optional
-	CustomCertificate []TLSInterceptCustomCertificateParameters `json:"customCertificate,omitempty" tf:"custom_certificate,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableForAllDomains *bool `json:"enableForAllDomains,omitempty" tf:"enable_for_all_domains,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Policy []TLSInterceptPolicyParameters `json:"policy,omitempty" tf:"policy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	TrustedCAURL *string `json:"trustedCaUrl,omitempty" tf:"trusted_ca_url,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VolterraCertificate *bool `json:"volterraCertificate,omitempty" tf:"volterra_certificate,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VolterraTrustedCA *bool `json:"volterraTrustedCa,omitempty" tf:"volterra_trusted_ca,omitempty"`
+	InterceptionRules []TLSInterceptPolicyInterceptionRulesParameters `json:"interceptionRules,omitempty" tf:"interception_rules,omitempty"`
 }
 
 type ExistingNetworkObservation struct {
@@ -485,19 +232,13 @@ type ExistingSubnetParameters struct {
 	SubnetName *string `json:"subnetName,omitempty" tf:"subnet_name,omitempty"`
 }
 
-type ForwardProxyPoliciesObservation struct {
+type GCPVPCSiteBlockedServicesObservation struct {
 }
 
-type ForwardProxyPoliciesParameters struct {
+type GCPVPCSiteBlockedServicesParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+	BlockedSevice []BlockedServicesBlockedSeviceParameters `json:"blockedSevice,omitempty" tf:"blocked_sevice,omitempty"`
 }
 
 type GCPVPCSiteCloudCredentialsObservation struct {
@@ -525,280 +266,43 @@ type GCPVPCSiteCloudCredentialsParameters struct {
 	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
 }
 
-type GCPVPCSiteObservation struct {
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IngressEgressGw []IngressEgressGwObservation `json:"ingressEgressGw,omitempty" tf:"ingress_egress_gw,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VoltstackCluster []VoltstackClusterObservation `json:"voltstackCluster,omitempty" tf:"voltstack_cluster,omitempty"`
+type GCPVPCSiteCoordinatesObservation struct {
 }
 
-type GCPVPCSiteParameters struct {
+type GCPVPCSiteCoordinatesParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	BlockedServices []BlockedServicesParameters `json:"blockedServices,omitempty" tf:"blocked_services,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	CloudCredentials []GCPVPCSiteCloudCredentialsParameters `json:"cloudCredentials,omitempty" tf:"cloud_credentials,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Coordinates []CoordinatesParameters `json:"coordinates,omitempty" tf:"coordinates,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DefaultBlockedServices *bool `json:"defaultBlockedServices,omitempty" tf:"default_blocked_services,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Disable *bool `json:"disable,omitempty" tf:"disable,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	GCPLabels map[string]*string `json:"gcpLabels,omitempty" tf:"gcp_labels,omitempty"`
-
-	// +kubebuilder:validation:Required
-	GCPRegion *string `json:"gcpRegion" tf:"gcp_region,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IngressEgressGw []IngressEgressGwParameters `json:"ingressEgressGw,omitempty" tf:"ingress_egress_gw,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IngressGw []IngressGwParameters `json:"ingressGw,omitempty" tf:"ingress_gw,omitempty"`
-
-	// +kubebuilder:validation:Required
-	InstanceType *string `json:"instanceType" tf:"instance_type,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	LogReceiver []LogReceiverParameters `json:"logReceiver,omitempty" tf:"log_receiver,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	LogsStreamingDisabled *bool `json:"logsStreamingDisabled,omitempty" tf:"logs_streaming_disabled,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Namespace *string `json:"namespace" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NodesPerAz *float64 `json:"nodesPerAz,omitempty" tf:"nodes_per_az,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OfflineSurvivabilityMode []OfflineSurvivabilityModeParameters `json:"offlineSurvivabilityMode,omitempty" tf:"offline_survivability_mode,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Os []OsParameters `json:"os,omitempty" tf:"os,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SiteLocalControlPlane []SiteLocalControlPlaneParameters `json:"siteLocalControlPlane,omitempty" tf:"site_local_control_plane,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Sw []SwParameters `json:"sw,omitempty" tf:"sw,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VoltstackCluster []VoltstackClusterParameters `json:"voltstackCluster,omitempty" tf:"voltstack_cluster,omitempty"`
+	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
 }
 
-type GlobalNetworkConnectionsEnableForwardProxyObservation struct {
+type GCPVPCSiteIngressEgressGwObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkList []IngressEgressGwGlobalNetworkListObservation `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	InsideStaticRoutes []IngressEgressGwInsideStaticRoutesObservation `json:"insideStaticRoutes,omitempty" tf:"inside_static_routes,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OutsideStaticRoutes []IngressEgressGwOutsideStaticRoutesObservation `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
 }
 
-type GlobalNetworkConnectionsEnableForwardProxyParameters struct {
+type GCPVPCSiteIngressEgressGwParameters struct {
 
 	// +kubebuilder:validation:Optional
-	ConnectionTimeout *float64 `json:"connectionTimeout,omitempty" tf:"connection_timeout,omitempty"`
+	ActiveForwardProxyPolicies []IngressEgressGwActiveForwardProxyPoliciesParameters `json:"activeForwardProxyPolicies,omitempty" tf:"active_forward_proxy_policies,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	MaxConnectAttempts *float64 `json:"maxConnectAttempts,omitempty" tf:"max_connect_attempts,omitempty"`
+	ActiveNetworkPolicies []IngressEgressGwActiveNetworkPoliciesParameters `json:"activeNetworkPolicies,omitempty" tf:"active_network_policies,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	NoInterception *bool `json:"noInterception,omitempty" tf:"no_interception,omitempty"`
+	DcClusterGroupInsideVn []IngressEgressGwDcClusterGroupInsideVnParameters `json:"dcClusterGroupInsideVn,omitempty" tf:"dc_cluster_group_inside_vn,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	TLSIntercept []EnableForwardProxyTLSInterceptParameters `json:"tlsIntercept,omitempty" tf:"tls_intercept,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WhiteListedPorts []*float64 `json:"whiteListedPorts,omitempty" tf:"white_listed_ports,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WhiteListedPrefixes []*string `json:"whiteListedPrefixes,omitempty" tf:"white_listed_prefixes,omitempty"`
-}
-
-type GlobalNetworkConnectionsObservation struct {
-
-	// +kubebuilder:validation:Optional
-	SLOToGlobalDr []SLOToGlobalDrObservation `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SliToGlobalDr []SliToGlobalDrObservation `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
-}
-
-type GlobalNetworkConnectionsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DisableForwardProxy *bool `json:"disableForwardProxy,omitempty" tf:"disable_forward_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableForwardProxy []EnableForwardProxyParameters `json:"enableForwardProxy,omitempty" tf:"enable_forward_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SLOToGlobalDr []SLOToGlobalDrParameters `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SliToGlobalDr []SliToGlobalDrParameters `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
-}
-
-type GlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
-}
-
-type GlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type GlobalNetworkConnectionsSLOToGlobalDrObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []GlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type GlobalNetworkConnectionsSLOToGlobalDrParameters struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []GlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type GlobalNetworkConnectionsSliToGlobalDrObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []SliToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type GlobalNetworkConnectionsSliToGlobalDrParameters struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []SliToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type GlobalNetworkListGlobalNetworkConnectionsObservation struct {
-
-	// +kubebuilder:validation:Optional
-	SLOToGlobalDr []GlobalNetworkConnectionsSLOToGlobalDrObservation `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SliToGlobalDr []GlobalNetworkConnectionsSliToGlobalDrObservation `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
-}
-
-type GlobalNetworkListGlobalNetworkConnectionsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DisableForwardProxy *bool `json:"disableForwardProxy,omitempty" tf:"disable_forward_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableForwardProxy []GlobalNetworkConnectionsEnableForwardProxyParameters `json:"enableForwardProxy,omitempty" tf:"enable_forward_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SLOToGlobalDr []GlobalNetworkConnectionsSLOToGlobalDrParameters `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SliToGlobalDr []GlobalNetworkConnectionsSliToGlobalDrParameters `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
-}
-
-type GlobalNetworkListObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkConnections []GlobalNetworkConnectionsObservation `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
-}
-
-type GlobalNetworkListParameters struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkConnections []GlobalNetworkConnectionsParameters `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
-}
-
-type GlobalVnObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
-}
-
-type GlobalVnParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type IPv4Observation struct {
-}
-
-type IPv4Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type IPv6Observation struct {
-}
-
-type IPv6Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type IngressEgressGwObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkList []GlobalNetworkListObservation `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	InsideStaticRoutes []InsideStaticRoutesObservation `json:"insideStaticRoutes,omitempty" tf:"inside_static_routes,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OutsideStaticRoutes []OutsideStaticRoutesObservation `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
-}
-
-type IngressEgressGwParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ActiveForwardProxyPolicies []ActiveForwardProxyPoliciesParameters `json:"activeForwardProxyPolicies,omitempty" tf:"active_forward_proxy_policies,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ActiveNetworkPolicies []ActiveNetworkPoliciesParameters `json:"activeNetworkPolicies,omitempty" tf:"active_network_policies,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DcClusterGroupInsideVn []DcClusterGroupInsideVnParameters `json:"dcClusterGroupInsideVn,omitempty" tf:"dc_cluster_group_inside_vn,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DcClusterGroupOutsideVn []DcClusterGroupOutsideVnParameters `json:"dcClusterGroupOutsideVn,omitempty" tf:"dc_cluster_group_outside_vn,omitempty"`
+	DcClusterGroupOutsideVn []IngressEgressGwDcClusterGroupOutsideVnParameters `json:"dcClusterGroupOutsideVn,omitempty" tf:"dc_cluster_group_outside_vn,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	ForwardProxyAllowAll *bool `json:"forwardProxyAllowAll,omitempty" tf:"forward_proxy_allow_all,omitempty"`
@@ -810,16 +314,16 @@ type IngressEgressGwParameters struct {
 	GCPZoneNames []*string `json:"gcpZoneNames" tf:"gcp_zone_names,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	GlobalNetworkList []GlobalNetworkListParameters `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
+	GlobalNetworkList []IngressEgressGwGlobalNetworkListParameters `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	InsideNetwork []InsideNetworkParameters `json:"insideNetwork,omitempty" tf:"inside_network,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	InsideStaticRoutes []InsideStaticRoutesParameters `json:"insideStaticRoutes,omitempty" tf:"inside_static_routes,omitempty"`
+	InsideStaticRoutes []IngressEgressGwInsideStaticRoutesParameters `json:"insideStaticRoutes,omitempty" tf:"inside_static_routes,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	InsideSubnet []InsideSubnetParameters `json:"insideSubnet,omitempty" tf:"inside_subnet,omitempty"`
+	InsideSubnet []IngressEgressGwInsideSubnetParameters `json:"insideSubnet,omitempty" tf:"inside_subnet,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	NoDcClusterGroup *bool `json:"noDcClusterGroup,omitempty" tf:"no_dc_cluster_group,omitempty"`
@@ -846,10 +350,10 @@ type IngressEgressGwParameters struct {
 	OutsideNetwork []OutsideNetworkParameters `json:"outsideNetwork,omitempty" tf:"outside_network,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	OutsideStaticRoutes []OutsideStaticRoutesParameters `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
+	OutsideStaticRoutes []IngressEgressGwOutsideStaticRoutesParameters `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	OutsideSubnet []OutsideSubnetParameters `json:"outsideSubnet,omitempty" tf:"outside_subnet,omitempty"`
+	OutsideSubnet []IngressEgressGwOutsideSubnetParameters `json:"outsideSubnet,omitempty" tf:"outside_subnet,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	SmConnectionPublicIP *bool `json:"smConnectionPublicIp,omitempty" tf:"sm_connection_public_ip,omitempty"`
@@ -858,10 +362,10 @@ type IngressEgressGwParameters struct {
 	SmConnectionPvtIP *bool `json:"smConnectionPvtIp,omitempty" tf:"sm_connection_pvt_ip,omitempty"`
 }
 
-type IngressGwObservation struct {
+type GCPVPCSiteIngressGwObservation struct {
 }
 
-type IngressGwParameters struct {
+type GCPVPCSiteIngressGwParameters struct {
 
 	// +kubebuilder:validation:Optional
 	GCPCertifiedHw *string `json:"gcpCertifiedHw,omitempty" tf:"gcp_certified_hw,omitempty"`
@@ -873,10 +377,686 @@ type IngressGwParameters struct {
 	LocalNetwork []LocalNetworkParameters `json:"localNetwork,omitempty" tf:"local_network,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	LocalSubnet []LocalSubnetParameters `json:"localSubnet,omitempty" tf:"local_subnet,omitempty"`
+	LocalSubnet []IngressGwLocalSubnetParameters `json:"localSubnet,omitempty" tf:"local_subnet,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	NodeNumber *float64 `json:"nodeNumber,omitempty" tf:"node_number,omitempty"`
+}
+
+type GCPVPCSiteLogReceiverObservation struct {
+}
+
+type GCPVPCSiteLogReceiverParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type GCPVPCSiteObservation struct {
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IngressEgressGw []GCPVPCSiteIngressEgressGwObservation `json:"ingressEgressGw,omitempty" tf:"ingress_egress_gw,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VoltstackCluster []GCPVPCSiteVoltstackClusterObservation `json:"voltstackCluster,omitempty" tf:"voltstack_cluster,omitempty"`
+}
+
+type GCPVPCSiteOfflineSurvivabilityModeObservation struct {
+}
+
+type GCPVPCSiteOfflineSurvivabilityModeParameters struct {
+
+	// +kubebuilder:validation:Optional
+	EnableOfflineSurvivabilityMode *bool `json:"enableOfflineSurvivabilityMode,omitempty" tf:"enable_offline_survivability_mode,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoOfflineSurvivabilityMode *bool `json:"noOfflineSurvivabilityMode,omitempty" tf:"no_offline_survivability_mode,omitempty"`
+}
+
+type GCPVPCSiteOsObservation struct {
+}
+
+type GCPVPCSiteOsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DefaultOsVersion *bool `json:"defaultOsVersion,omitempty" tf:"default_os_version,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OperatingSystemVersion *string `json:"operatingSystemVersion,omitempty" tf:"operating_system_version,omitempty"`
+}
+
+type GCPVPCSiteParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	BlockedServices []GCPVPCSiteBlockedServicesParameters `json:"blockedServices,omitempty" tf:"blocked_services,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	CloudCredentials []GCPVPCSiteCloudCredentialsParameters `json:"cloudCredentials,omitempty" tf:"cloud_credentials,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Coordinates []GCPVPCSiteCoordinatesParameters `json:"coordinates,omitempty" tf:"coordinates,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DefaultBlockedServices *bool `json:"defaultBlockedServices,omitempty" tf:"default_blocked_services,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Disable *bool `json:"disable,omitempty" tf:"disable,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	GCPLabels map[string]*string `json:"gcpLabels,omitempty" tf:"gcp_labels,omitempty"`
+
+	// +kubebuilder:validation:Required
+	GCPRegion *string `json:"gcpRegion" tf:"gcp_region,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IngressEgressGw []GCPVPCSiteIngressEgressGwParameters `json:"ingressEgressGw,omitempty" tf:"ingress_egress_gw,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IngressGw []GCPVPCSiteIngressGwParameters `json:"ingressGw,omitempty" tf:"ingress_gw,omitempty"`
+
+	// +kubebuilder:validation:Required
+	InstanceType *string `json:"instanceType" tf:"instance_type,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	LogReceiver []GCPVPCSiteLogReceiverParameters `json:"logReceiver,omitempty" tf:"log_receiver,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	LogsStreamingDisabled *bool `json:"logsStreamingDisabled,omitempty" tf:"logs_streaming_disabled,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Namespace *string `json:"namespace" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NodesPerAz *float64 `json:"nodesPerAz,omitempty" tf:"nodes_per_az,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OfflineSurvivabilityMode []GCPVPCSiteOfflineSurvivabilityModeParameters `json:"offlineSurvivabilityMode,omitempty" tf:"offline_survivability_mode,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Os []GCPVPCSiteOsParameters `json:"os,omitempty" tf:"os,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SiteLocalControlPlane []GCPVPCSiteSiteLocalControlPlaneParameters `json:"siteLocalControlPlane,omitempty" tf:"site_local_control_plane,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Sw []GCPVPCSiteSwParameters `json:"sw,omitempty" tf:"sw,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VoltstackCluster []GCPVPCSiteVoltstackClusterParameters `json:"voltstackCluster,omitempty" tf:"voltstack_cluster,omitempty"`
+}
+
+type GCPVPCSiteSiteLocalControlPlaneObservation struct {
+}
+
+type GCPVPCSiteSiteLocalControlPlaneParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DefaultLocalControlPlane *bool `json:"defaultLocalControlPlane,omitempty" tf:"default_local_control_plane,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoLocalControlPlane *bool `json:"noLocalControlPlane,omitempty" tf:"no_local_control_plane,omitempty"`
+}
+
+type GCPVPCSiteSwObservation struct {
+}
+
+type GCPVPCSiteSwParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DefaultSwVersion *bool `json:"defaultSwVersion,omitempty" tf:"default_sw_version,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VolterraSoftwareVersion *string `json:"volterraSoftwareVersion,omitempty" tf:"volterra_software_version,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterActiveForwardProxyPoliciesObservation struct {
+}
+
+type GCPVPCSiteVoltstackClusterActiveForwardProxyPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ForwardProxyPolicies []VoltstackClusterActiveForwardProxyPoliciesForwardProxyPoliciesParameters `json:"forwardProxyPolicies,omitempty" tf:"forward_proxy_policies,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterActiveNetworkPoliciesObservation struct {
+}
+
+type GCPVPCSiteVoltstackClusterActiveNetworkPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	NetworkPolicies []VoltstackClusterActiveNetworkPoliciesNetworkPoliciesParameters `json:"networkPolicies,omitempty" tf:"network_policies,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterGlobalNetworkListObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkConnections []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsObservation `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterGlobalNetworkListParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkConnections []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsParameters `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkList []GCPVPCSiteVoltstackClusterGlobalNetworkListObservation `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OutsideStaticRoutes []GCPVPCSiteVoltstackClusterOutsideStaticRoutesObservation `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterOutsideStaticRoutesObservation struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []GCPVPCSiteVoltstackClusterOutsideStaticRoutesStaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterOutsideStaticRoutesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []GCPVPCSiteVoltstackClusterOutsideStaticRoutesStaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterOutsideStaticRoutesStaticRouteListObservation struct {
+
+	// +kubebuilder:validation:Optional
+	CustomStaticRoute []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterOutsideStaticRoutesStaticRouteListParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CustomStaticRoute []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
+}
+
+type GCPVPCSiteVoltstackClusterParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ActiveForwardProxyPolicies []GCPVPCSiteVoltstackClusterActiveForwardProxyPoliciesParameters `json:"activeForwardProxyPolicies,omitempty" tf:"active_forward_proxy_policies,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ActiveNetworkPolicies []GCPVPCSiteVoltstackClusterActiveNetworkPoliciesParameters `json:"activeNetworkPolicies,omitempty" tf:"active_network_policies,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DcClusterGroup []VoltstackClusterDcClusterGroupParameters `json:"dcClusterGroup,omitempty" tf:"dc_cluster_group,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DefaultStorage *bool `json:"defaultStorage,omitempty" tf:"default_storage,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ForwardProxyAllowAll *bool `json:"forwardProxyAllowAll,omitempty" tf:"forward_proxy_allow_all,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	GCPCertifiedHw *string `json:"gcpCertifiedHw,omitempty" tf:"gcp_certified_hw,omitempty"`
+
+	// +kubebuilder:validation:Required
+	GCPZoneNames []*string `json:"gcpZoneNames" tf:"gcp_zone_names,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkList []GCPVPCSiteVoltstackClusterGlobalNetworkListParameters `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	K8SCluster []VoltstackClusterK8SClusterParameters `json:"k8sCluster,omitempty" tf:"k8s_cluster,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoDcClusterGroup *bool `json:"noDcClusterGroup,omitempty" tf:"no_dc_cluster_group,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoForwardProxy *bool `json:"noForwardProxy,omitempty" tf:"no_forward_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoGlobalNetwork *bool `json:"noGlobalNetwork,omitempty" tf:"no_global_network,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoK8SCluster *bool `json:"noK8SCluster,omitempty" tf:"no_k8s_cluster,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoNetworkPolicy *bool `json:"noNetworkPolicy,omitempty" tf:"no_network_policy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoOutsideStaticRoutes *bool `json:"noOutsideStaticRoutes,omitempty" tf:"no_outside_static_routes,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NodeNumber *float64 `json:"nodeNumber,omitempty" tf:"node_number,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OutsideStaticRoutes []GCPVPCSiteVoltstackClusterOutsideStaticRoutesParameters `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SiteLocalNetwork []SiteLocalNetworkParameters `json:"siteLocalNetwork,omitempty" tf:"site_local_network,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SiteLocalSubnet []SiteLocalSubnetParameters `json:"siteLocalSubnet,omitempty" tf:"site_local_subnet,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SmConnectionPublicIP *bool `json:"smConnectionPublicIp,omitempty" tf:"sm_connection_public_ip,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SmConnectionPvtIP *bool `json:"smConnectionPvtIp,omitempty" tf:"sm_connection_pvt_ip,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StorageClassList []VoltstackClusterStorageClassListParameters `json:"storageClassList,omitempty" tf:"storage_class_list,omitempty"`
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptCustomCertificateObservation struct {
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptCustomCertificateParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CertificateURL *string `json:"certificateUrl,omitempty" tf:"certificate_url,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	CustomHashAlgorithms []EnableForwardProxyTLSInterceptCustomCertificateCustomHashAlgorithmsParameters `json:"customHashAlgorithms,omitempty" tf:"custom_hash_algorithms,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DisableOcspStapling []EnableForwardProxyTLSInterceptCustomCertificateDisableOcspStaplingParameters `json:"disableOcspStapling,omitempty" tf:"disable_ocsp_stapling,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PrivateKey []EnableForwardProxyTLSInterceptCustomCertificatePrivateKeyParameters `json:"privateKey,omitempty" tf:"private_key,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	UseSystemDefaults []EnableForwardProxyTLSInterceptCustomCertificateUseSystemDefaultsParameters `json:"useSystemDefaults,omitempty" tf:"use_system_defaults,omitempty"`
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptObservation struct {
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CustomCertificate []EnableForwardProxyTLSInterceptCustomCertificateParameters `json:"customCertificate,omitempty" tf:"custom_certificate,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableForAllDomains *bool `json:"enableForAllDomains,omitempty" tf:"enable_for_all_domains,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Policy []EnableForwardProxyTLSInterceptPolicyParameters `json:"policy,omitempty" tf:"policy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	TrustedCAURL *string `json:"trustedCaUrl,omitempty" tf:"trusted_ca_url,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VolterraCertificate *bool `json:"volterraCertificate,omitempty" tf:"volterra_certificate,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VolterraTrustedCA *bool `json:"volterraTrustedCa,omitempty" tf:"volterra_trusted_ca,omitempty"`
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptPolicyObservation struct {
+}
+
+type GlobalNetworkConnectionsEnableForwardProxyTLSInterceptPolicyParameters struct {
+
+	// +kubebuilder:validation:Optional
+	InterceptionRules []EnableForwardProxyTLSInterceptPolicyInterceptionRulesParameters `json:"interceptionRules,omitempty" tf:"interception_rules,omitempty"`
+}
+
+type GlobalNetworkConnectionsSliToGlobalDrGlobalVnObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+}
+
+type GlobalNetworkConnectionsSliToGlobalDrGlobalVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyObservation struct {
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ConnectionTimeout *float64 `json:"connectionTimeout,omitempty" tf:"connection_timeout,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	MaxConnectAttempts *float64 `json:"maxConnectAttempts,omitempty" tf:"max_connect_attempts,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoInterception *bool `json:"noInterception,omitempty" tf:"no_interception,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	TLSIntercept []GlobalNetworkConnectionsEnableForwardProxyTLSInterceptParameters `json:"tlsIntercept,omitempty" tf:"tls_intercept,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WhiteListedPorts []*float64 `json:"whiteListedPorts,omitempty" tf:"white_listed_ports,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WhiteListedPrefixes []*string `json:"whiteListedPrefixes,omitempty" tf:"white_listed_prefixes,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyTLSInterceptObservation struct {
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyTLSInterceptParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CustomCertificate []GlobalNetworkConnectionsEnableForwardProxyTLSInterceptCustomCertificateParameters `json:"customCertificate,omitempty" tf:"custom_certificate,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableForAllDomains *bool `json:"enableForAllDomains,omitempty" tf:"enable_for_all_domains,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Policy []GlobalNetworkConnectionsEnableForwardProxyTLSInterceptPolicyParameters `json:"policy,omitempty" tf:"policy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	TrustedCAURL *string `json:"trustedCaUrl,omitempty" tf:"trusted_ca_url,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VolterraCertificate *bool `json:"volterraCertificate,omitempty" tf:"volterra_certificate,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VolterraTrustedCA *bool `json:"volterraTrustedCa,omitempty" tf:"volterra_trusted_ca,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrGlobalVnObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrGlobalVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkConnectionsSliToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkConnectionsSliToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type IngressEgressGwActiveForwardProxyPoliciesForwardProxyPoliciesObservation struct {
+}
+
+type IngressEgressGwActiveForwardProxyPoliciesForwardProxyPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type IngressEgressGwActiveForwardProxyPoliciesObservation struct {
+}
+
+type IngressEgressGwActiveForwardProxyPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ForwardProxyPolicies []IngressEgressGwActiveForwardProxyPoliciesForwardProxyPoliciesParameters `json:"forwardProxyPolicies,omitempty" tf:"forward_proxy_policies,omitempty"`
+}
+
+type IngressEgressGwActiveNetworkPoliciesNetworkPoliciesObservation struct {
+}
+
+type IngressEgressGwActiveNetworkPoliciesNetworkPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type IngressEgressGwActiveNetworkPoliciesObservation struct {
+}
+
+type IngressEgressGwActiveNetworkPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	NetworkPolicies []IngressEgressGwActiveNetworkPoliciesNetworkPoliciesParameters `json:"networkPolicies,omitempty" tf:"network_policies,omitempty"`
+}
+
+type IngressEgressGwDcClusterGroupInsideVnObservation struct {
+}
+
+type IngressEgressGwDcClusterGroupInsideVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type IngressEgressGwDcClusterGroupOutsideVnObservation struct {
+}
+
+type IngressEgressGwDcClusterGroupOutsideVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type IngressEgressGwGlobalNetworkListGlobalNetworkConnectionsObservation struct {
+
+	// +kubebuilder:validation:Optional
+	SLOToGlobalDr []GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrObservation `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SliToGlobalDr []GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrObservation `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
+}
+
+type IngressEgressGwGlobalNetworkListGlobalNetworkConnectionsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DisableForwardProxy *bool `json:"disableForwardProxy,omitempty" tf:"disable_forward_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableForwardProxy []GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyParameters `json:"enableForwardProxy,omitempty" tf:"enable_forward_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SLOToGlobalDr []GlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrParameters `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SliToGlobalDr []GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrParameters `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
+}
+
+type IngressEgressGwGlobalNetworkListObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkConnections []IngressEgressGwGlobalNetworkListGlobalNetworkConnectionsObservation `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
+}
+
+type IngressEgressGwGlobalNetworkListParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalNetworkConnections []IngressEgressGwGlobalNetworkListGlobalNetworkConnectionsParameters `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
+}
+
+type IngressEgressGwInsideStaticRoutesObservation struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []InsideStaticRoutesStaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type IngressEgressGwInsideStaticRoutesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []InsideStaticRoutesStaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type IngressEgressGwInsideSubnetObservation struct {
+}
+
+type IngressEgressGwInsideSubnetParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ExistingSubnet []ExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NewSubnet []NewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesObservation struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []IngressEgressGwOutsideStaticRoutesStaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	StaticRouteList []IngressEgressGwOutsideStaticRoutesStaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesStaticRouteListCustomStaticRouteObservation struct {
+
+	// +kubebuilder:validation:Optional
+	Nexthop []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesStaticRouteListCustomStaticRouteParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Attrs []*string `json:"attrs,omitempty" tf:"attrs,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Nexthop []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Subnets []OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesStaticRouteListObservation struct {
+
+	// +kubebuilder:validation:Optional
+	CustomStaticRoute []IngressEgressGwOutsideStaticRoutesStaticRouteListCustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+}
+
+type IngressEgressGwOutsideStaticRoutesStaticRouteListParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CustomStaticRoute []IngressEgressGwOutsideStaticRoutesStaticRouteListCustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
+}
+
+type IngressEgressGwOutsideSubnetObservation struct {
+}
+
+type IngressEgressGwOutsideSubnetParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ExistingSubnet []OutsideSubnetExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NewSubnet []OutsideSubnetNewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
+}
+
+type IngressGwLocalSubnetObservation struct {
+}
+
+type IngressGwLocalSubnetParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ExistingSubnet []LocalSubnetExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NewSubnet []LocalSubnetNewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
 }
 
 type InsideNetworkObservation struct {
@@ -894,89 +1074,94 @@ type InsideNetworkParameters struct {
 	NewNetworkAutogenerate []NewNetworkAutogenerateParameters `json:"newNetworkAutogenerate,omitempty" tf:"new_network_autogenerate,omitempty"`
 }
 
-type InsideStaticRoutesObservation struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation struct {
 
 	// +kubebuilder:validation:Optional
-	StaticRouteList []StaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+	Interface []StaticRouteListCustomStaticRouteNexthopInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
 }
 
-type InsideStaticRoutesParameters struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters struct {
 
 	// +kubebuilder:validation:Optional
-	StaticRouteList []StaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+	Interface []StaticRouteListCustomStaticRouteNexthopInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NexthopAddress []StaticRouteListCustomStaticRouteNexthopNexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type InsideSubnetObservation struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteObservation struct {
+
+	// +kubebuilder:validation:Optional
+	Nexthop []InsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
 }
 
-type InsideSubnetParameters struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteParameters struct {
 
 	// +kubebuilder:validation:Optional
-	ExistingSubnet []ExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
+	Attrs []*string `json:"attrs,omitempty" tf:"attrs,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	NewSubnet []NewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Nexthop []InsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Subnets []InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
 }
 
-type InterceptionRulesDomainMatchObservation struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Observation struct {
 }
 
-type InterceptionRulesDomainMatchParameters struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	ExactValue *string `json:"exactValue,omitempty" tf:"exact_value,omitempty"`
+	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	RegexValue *string `json:"regexValue,omitempty" tf:"regex_value,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SuffixValue *string `json:"suffixValue,omitempty" tf:"suffix_value,omitempty"`
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 }
 
-type InterceptionRulesObservation struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Observation struct {
 }
 
-type InterceptionRulesParameters struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	DisableInterception *bool `json:"disableInterception,omitempty" tf:"disable_interception,omitempty"`
+	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	DomainMatch []DomainMatchParameters `json:"domainMatch,omitempty" tf:"domain_match,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableInterception *bool `json:"enableInterception,omitempty" tf:"enable_interception,omitempty"`
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 }
 
-type InterfaceObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsObservation struct {
 }
 
-type InterfaceParameters struct {
+type InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	IPv4 []InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+	IPv6 []InsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 }
 
-type K8SClusterObservation struct {
+type InsideStaticRoutesStaticRouteListObservation struct {
+
+	// +kubebuilder:validation:Optional
+	CustomStaticRoute []InsideStaticRoutesStaticRouteListCustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
 }
 
-type K8SClusterParameters struct {
+type InsideStaticRoutesStaticRouteListParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	CustomStaticRoute []InsideStaticRoutesStaticRouteListCustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
 }
 
 type LocalNetworkExistingNetworkObservation struct {
@@ -1042,48 +1227,6 @@ type LocalSubnetNewSubnetParameters struct {
 	SubnetName *string `json:"subnetName,omitempty" tf:"subnet_name,omitempty"`
 }
 
-type LocalSubnetObservation struct {
-}
-
-type LocalSubnetParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ExistingSubnet []LocalSubnetExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NewSubnet []LocalSubnetNewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
-}
-
-type LogReceiverObservation struct {
-}
-
-type LogReceiverParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type NetworkPoliciesObservation struct {
-}
-
-type NetworkPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
 type NewNetworkAutogenerateObservation struct {
 }
 
@@ -1112,136 +1255,6 @@ type NewSubnetParameters struct {
 
 	// +kubebuilder:validation:Optional
 	SubnetName *string `json:"subnetName,omitempty" tf:"subnet_name,omitempty"`
-}
-
-type NexthopAddressIPv4Observation struct {
-}
-
-type NexthopAddressIPv4Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type NexthopAddressIPv6Observation struct {
-}
-
-type NexthopAddressIPv6Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type NexthopAddressObservation struct {
-}
-
-type NexthopAddressParameters struct {
-
-	// +kubebuilder:validation:Optional
-	IPv4 []IPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IPv6 []IPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
-}
-
-type NexthopInterfaceObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
-}
-
-type NexthopInterfaceParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type NexthopNexthopAddressIPv4Observation struct {
-}
-
-type NexthopNexthopAddressIPv4Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type NexthopNexthopAddressIPv6Observation struct {
-}
-
-type NexthopNexthopAddressIPv6Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
-}
-
-type NexthopNexthopAddressObservation struct {
-}
-
-type NexthopNexthopAddressParameters struct {
-
-	// +kubebuilder:validation:Optional
-	IPv4 []NexthopAddressIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IPv6 []NexthopAddressIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
-}
-
-type NexthopObservation struct {
-
-	// +kubebuilder:validation:Optional
-	Interface []InterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
-}
-
-type NexthopParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Interface []InterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NexthopAddress []NexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-}
-
-type OfflineSurvivabilityModeObservation struct {
-}
-
-type OfflineSurvivabilityModeParameters struct {
-
-	// +kubebuilder:validation:Optional
-	EnableOfflineSurvivabilityMode *bool `json:"enableOfflineSurvivabilityMode,omitempty" tf:"enable_offline_survivability_mode,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoOfflineSurvivabilityMode *bool `json:"noOfflineSurvivabilityMode,omitempty" tf:"no_offline_survivability_mode,omitempty"`
-}
-
-type OpenebsEnterpriseObservation struct {
-}
-
-type OpenebsEnterpriseParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StorageClassSize *float64 `json:"storageClassSize,omitempty" tf:"storage_class_size,omitempty"`
-}
-
-type OsObservation struct {
-}
-
-type OsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DefaultOsVersion *bool `json:"defaultOsVersion,omitempty" tf:"default_os_version,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OperatingSystemVersion *string `json:"operatingSystemVersion,omitempty" tf:"operating_system_version,omitempty"`
 }
 
 type OutsideNetworkExistingNetworkObservation struct {
@@ -1286,52 +1299,104 @@ type OutsideNetworkParameters struct {
 	NewNetworkAutogenerate []OutsideNetworkNewNetworkAutogenerateParameters `json:"newNetworkAutogenerate,omitempty" tf:"new_network_autogenerate,omitempty"`
 }
 
-type OutsideStaticRoutesObservation struct {
-
-	// +kubebuilder:validation:Optional
-	StaticRouteList []OutsideStaticRoutesStaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 }
 
-type OutsideStaticRoutesParameters struct {
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceParameters struct {
 
 	// +kubebuilder:validation:Optional
-	StaticRouteList []OutsideStaticRoutesStaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
 }
 
-type OutsideStaticRoutesStaticRouteListCustomStaticRouteObservation struct {
-
-	// +kubebuilder:validation:Optional
-	Nexthop []StaticRouteListCustomStaticRouteNexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Observation struct {
 }
 
-type OutsideStaticRoutesStaticRouteListCustomStaticRouteParameters struct {
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	Attrs []*string `json:"attrs,omitempty" tf:"attrs,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Nexthop []StaticRouteListCustomStaticRouteNexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Subnets []StaticRouteListCustomStaticRouteSubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
 }
 
-type OutsideStaticRoutesStaticRouteListObservation struct {
-
-	// +kubebuilder:validation:Optional
-	CustomStaticRoute []StaticRouteListCustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Observation struct {
 }
 
-type OutsideStaticRoutesStaticRouteListParameters struct {
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	CustomStaticRoute []StaticRouteListCustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressObservation struct {
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressParameters struct {
 
 	// +kubebuilder:validation:Optional
-	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
+	IPv4 []StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IPv6 []StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation struct {
+
+	// +kubebuilder:validation:Optional
+	Interface []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Interface []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NexthopAddress []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Observation struct {
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters struct {
+
+	// +kubebuilder:validation:Optional
+	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Observation struct {
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters struct {
+
+	// +kubebuilder:validation:Optional
+	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsObservation struct {
+}
+
+type OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	IPv4 []OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IPv6 []OutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 }
 
 type OutsideSubnetExistingSubnetObservation struct {
@@ -1355,176 +1420,19 @@ type OutsideSubnetNewSubnetParameters struct {
 	SubnetName *string `json:"subnetName,omitempty" tf:"subnet_name,omitempty"`
 }
 
-type OutsideSubnetObservation struct {
+type PolicyInterceptionRulesDomainMatchObservation struct {
 }
 
-type OutsideSubnetParameters struct {
+type PolicyInterceptionRulesDomainMatchParameters struct {
 
 	// +kubebuilder:validation:Optional
-	ExistingSubnet []OutsideSubnetExistingSubnetParameters `json:"existingSubnet,omitempty" tf:"existing_subnet,omitempty"`
+	ExactValue *string `json:"exactValue,omitempty" tf:"exact_value,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	NewSubnet []OutsideSubnetNewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
-}
-
-type PolicyInterceptionRulesObservation struct {
-}
-
-type PolicyInterceptionRulesParameters struct {
+	RegexValue *string `json:"regexValue,omitempty" tf:"regex_value,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	DisableInterception *bool `json:"disableInterception,omitempty" tf:"disable_interception,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DomainMatch []InterceptionRulesDomainMatchParameters `json:"domainMatch,omitempty" tf:"domain_match,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableInterception *bool `json:"enableInterception,omitempty" tf:"enable_interception,omitempty"`
-}
-
-type PolicyObservation struct {
-}
-
-type PolicyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	InterceptionRules []InterceptionRulesParameters `json:"interceptionRules,omitempty" tf:"interception_rules,omitempty"`
-}
-
-type PrivateKeyBlindfoldSecretInfoInternalObservation struct {
-}
-
-type PrivateKeyBlindfoldSecretInfoInternalParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Location *string `json:"location,omitempty" tf:"location,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
-}
-
-type PrivateKeyBlindfoldSecretInfoObservation struct {
-}
-
-type PrivateKeyBlindfoldSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Location *string `json:"location,omitempty" tf:"location,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
-}
-
-type PrivateKeyClearSecretInfoObservation struct {
-}
-
-type PrivateKeyClearSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	URL *string `json:"url,omitempty" tf:"url,omitempty"`
-}
-
-type PrivateKeyObservation struct {
-}
-
-type PrivateKeyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfo []PrivateKeyBlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfoInternal []PrivateKeyBlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ClearSecretInfo []PrivateKeyClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SecretEncodingType *string `json:"secretEncodingType,omitempty" tf:"secret_encoding_type,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VaultSecretInfo []PrivateKeyVaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	WingmanSecretInfo []PrivateKeyWingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
-}
-
-type PrivateKeyVaultSecretInfoObservation struct {
-}
-
-type PrivateKeyVaultSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Key *string `json:"key,omitempty" tf:"key,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Location *string `json:"location,omitempty" tf:"location,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SecretEncoding *string `json:"secretEncoding,omitempty" tf:"secret_encoding,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-type PrivateKeyWingmanSecretInfoObservation struct {
-}
-
-type PrivateKeyWingmanSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-}
-
-type SLOToGlobalDrGlobalVnObservation struct {
-	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
-}
-
-type SLOToGlobalDrGlobalVnParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
-}
-
-type SLOToGlobalDrObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []SLOToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type SLOToGlobalDrParameters struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []SLOToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
-}
-
-type SiteLocalControlPlaneObservation struct {
-}
-
-type SiteLocalControlPlaneParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DefaultLocalControlPlane *bool `json:"defaultLocalControlPlane,omitempty" tf:"default_local_control_plane,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoLocalControlPlane *bool `json:"noLocalControlPlane,omitempty" tf:"no_local_control_plane,omitempty"`
+	SuffixValue *string `json:"suffixValue,omitempty" tf:"suffix_value,omitempty"`
 }
 
 type SiteLocalNetworkExistingNetworkObservation struct {
@@ -1602,11 +1510,11 @@ type SiteLocalSubnetParameters struct {
 	NewSubnet []SiteLocalSubnetNewSubnetParameters `json:"newSubnet,omitempty" tf:"new_subnet,omitempty"`
 }
 
-type SliToGlobalDrGlobalVnObservation struct {
+type StaticRouteListCustomStaticRouteNexthopInterfaceObservation struct {
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 }
 
-type SliToGlobalDrGlobalVnParameters struct {
+type StaticRouteListCustomStaticRouteNexthopInterfaceParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -1618,43 +1526,411 @@ type SliToGlobalDrGlobalVnParameters struct {
 	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
 }
 
-type SliToGlobalDrObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalVn []GlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Observation struct {
 }
 
-type SliToGlobalDrParameters struct {
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	GlobalVn []GlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteNexthopObservation struct {
-
-	// +kubebuilder:validation:Optional
-	Interface []CustomStaticRouteNexthopInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Observation struct {
 }
 
-type StaticRouteListCustomStaticRouteNexthopParameters struct {
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Parameters struct {
 
 	// +kubebuilder:validation:Optional
-	Interface []CustomStaticRouteNexthopInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
+}
+
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressObservation struct {
+}
+
+type StaticRouteListCustomStaticRouteNexthopNexthopAddressParameters struct {
 
 	// +kubebuilder:validation:Optional
-	NexthopAddress []CustomStaticRouteNexthopNexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
+	IPv4 []CustomStaticRouteNexthopNexthopAddressIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IPv6 []CustomStaticRouteNexthopNexthopAddressIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
+type StorageClassListStorageClassesObservation struct {
+}
+
+type StorageClassListStorageClassesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DefaultStorageClass *bool `json:"defaultStorageClass,omitempty" tf:"default_storage_class,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OpenebsEnterprise []StorageClassesOpenebsEnterpriseParameters `json:"openebsEnterprise,omitempty" tf:"openebs_enterprise,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StorageClassName *string `json:"storageClassName,omitempty" tf:"storage_class_name,omitempty"`
+}
+
+type StorageClassesOpenebsEnterpriseObservation struct {
+}
+
+type StorageClassesOpenebsEnterpriseParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StorageClassSize *float64 `json:"storageClassSize,omitempty" tf:"storage_class_size,omitempty"`
+}
+
+type TLSInterceptCustomCertificateCustomHashAlgorithmsObservation struct {
+}
+
+type TLSInterceptCustomCertificateCustomHashAlgorithmsParameters struct {
+
+	// +kubebuilder:validation:Required
+	HashAlgorithms []*string `json:"hashAlgorithms" tf:"hash_algorithms,omitempty"`
+}
+
+type TLSInterceptCustomCertificateDisableOcspStaplingObservation struct {
+}
+
+type TLSInterceptCustomCertificateDisableOcspStaplingParameters struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoInternalObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoInternalParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
+}
+
+type TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyBlindfoldSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
+}
+
+type TLSInterceptCustomCertificatePrivateKeyClearSecretInfoObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyClearSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+}
+
+type TLSInterceptCustomCertificatePrivateKeyObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyParameters struct {
+
+	// +kubebuilder:validation:Optional
+	BlindfoldSecretInfo []CustomCertificatePrivateKeyBlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	BlindfoldSecretInfoInternal []CustomCertificatePrivateKeyBlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ClearSecretInfo []CustomCertificatePrivateKeyClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SecretEncodingType *string `json:"secretEncodingType,omitempty" tf:"secret_encoding_type,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VaultSecretInfo []CustomCertificatePrivateKeyVaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WingmanSecretInfo []CustomCertificatePrivateKeyWingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
+}
+
+type TLSInterceptCustomCertificatePrivateKeyVaultSecretInfoObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyVaultSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SecretEncoding *string `json:"secretEncoding,omitempty" tf:"secret_encoding,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type TLSInterceptCustomCertificatePrivateKeyWingmanSecretInfoObservation struct {
+}
+
+type TLSInterceptCustomCertificatePrivateKeyWingmanSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type TLSInterceptCustomCertificateUseSystemDefaultsObservation struct {
+}
+
+type TLSInterceptCustomCertificateUseSystemDefaultsParameters struct {
+}
+
+type TLSInterceptPolicyInterceptionRulesDomainMatchObservation struct {
+}
+
+type TLSInterceptPolicyInterceptionRulesDomainMatchParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ExactValue *string `json:"exactValue,omitempty" tf:"exact_value,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	RegexValue *string `json:"regexValue,omitempty" tf:"regex_value,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SuffixValue *string `json:"suffixValue,omitempty" tf:"suffix_value,omitempty"`
+}
+
+type TLSInterceptPolicyInterceptionRulesObservation struct {
+}
+
+type TLSInterceptPolicyInterceptionRulesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DisableInterception *bool `json:"disableInterception,omitempty" tf:"disable_interception,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DomainMatch []PolicyInterceptionRulesDomainMatchParameters `json:"domainMatch,omitempty" tf:"domain_match,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableInterception *bool `json:"enableInterception,omitempty" tf:"enable_interception,omitempty"`
+}
+
+type VoltstackClusterActiveForwardProxyPoliciesForwardProxyPoliciesObservation struct {
+}
+
+type VoltstackClusterActiveForwardProxyPoliciesForwardProxyPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterActiveNetworkPoliciesNetworkPoliciesObservation struct {
+}
+
+type VoltstackClusterActiveNetworkPoliciesNetworkPoliciesParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterDcClusterGroupObservation struct {
+}
+
+type VoltstackClusterDcClusterGroupParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyObservation struct {
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyParameters struct {
+
+	// +kubebuilder:validation:Optional
+	ConnectionTimeout *float64 `json:"connectionTimeout,omitempty" tf:"connection_timeout,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	MaxConnectAttempts *float64 `json:"maxConnectAttempts,omitempty" tf:"max_connect_attempts,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoInterception *bool `json:"noInterception,omitempty" tf:"no_interception,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	TLSIntercept []GlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyTLSInterceptParameters `json:"tlsIntercept,omitempty" tf:"tls_intercept,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WhiteListedPorts []*float64 `json:"whiteListedPorts,omitempty" tf:"white_listed_ports,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	WhiteListedPrefixes []*string `json:"whiteListedPrefixes,omitempty" tf:"white_listed_prefixes,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsObservation struct {
+
+	// +kubebuilder:validation:Optional
+	SLOToGlobalDr []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrObservation `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SliToGlobalDr []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrObservation `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DisableForwardProxy *bool `json:"disableForwardProxy,omitempty" tf:"disable_forward_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EnableForwardProxy []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsEnableForwardProxyParameters `json:"enableForwardProxy,omitempty" tf:"enable_forward_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SLOToGlobalDr []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrParameters `json:"sloToGlobalDr,omitempty" tf:"slo_to_global_dr,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SliToGlobalDr []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrParameters `json:"sliToGlobalDr,omitempty" tf:"sli_to_global_dr,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSLOToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrObservation struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrGlobalVnObservation `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type VoltstackClusterGlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrParameters struct {
+
+	// +kubebuilder:validation:Optional
+	GlobalVn []GlobalNetworkListGlobalNetworkConnectionsSliToGlobalDrGlobalVnParameters `json:"globalVn,omitempty" tf:"global_vn,omitempty"`
+}
+
+type VoltstackClusterK8SClusterObservation struct {
+}
+
+type VoltstackClusterK8SClusterParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceObservation struct {
+	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Tenant *string `json:"tenant,omitempty" tf:"tenant,omitempty"`
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressObservation struct {
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressParameters struct {
+
+	// +kubebuilder:validation:Optional
+	IPv4 []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	IPv6 []OutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation struct {
+
+	// +kubebuilder:validation:Optional
+	Interface []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
+}
+
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Interface []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NexthopAddress []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopNexthopAddressParameters `json:"nexthopAddress,omitempty" tf:"nexthop_address,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteObservation struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteObservation struct {
 
 	// +kubebuilder:validation:Optional
-	Nexthop []CustomStaticRouteNexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+	Nexthop []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopObservation `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteParameters struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Attrs []*string `json:"attrs,omitempty" tf:"attrs,omitempty"`
@@ -1663,16 +1939,16 @@ type StaticRouteListCustomStaticRouteParameters struct {
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Nexthop []CustomStaticRouteNexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
+	Nexthop []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteNexthopParameters `json:"nexthop,omitempty" tf:"nexthop,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Subnets []CustomStaticRouteSubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
+	Subnets []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters `json:"subnets,omitempty" tf:"subnets,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteSubnetsIPv4Observation struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Observation struct {
 }
 
-type StaticRouteListCustomStaticRouteSubnetsIPv4Parameters struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters struct {
 
 	// +kubebuilder:validation:Optional
 	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
@@ -1681,10 +1957,10 @@ type StaticRouteListCustomStaticRouteSubnetsIPv4Parameters struct {
 	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteSubnetsIPv6Observation struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Observation struct {
 }
 
-type StaticRouteListCustomStaticRouteSubnetsIPv6Parameters struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters struct {
 
 	// +kubebuilder:validation:Optional
 	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
@@ -1693,301 +1969,25 @@ type StaticRouteListCustomStaticRouteSubnetsIPv6Parameters struct {
 	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 }
 
-type StaticRouteListCustomStaticRouteSubnetsObservation struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsObservation struct {
 }
 
-type StaticRouteListCustomStaticRouteSubnetsParameters struct {
+type VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsParameters struct {
 
 	// +kubebuilder:validation:Optional
-	IPv4 []StaticRouteListCustomStaticRouteSubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+	IPv4 []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	IPv6 []StaticRouteListCustomStaticRouteSubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+	IPv6 []VoltstackClusterOutsideStaticRoutesStaticRouteListCustomStaticRouteSubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 }
 
-type StaticRouteListObservation struct {
-
-	// +kubebuilder:validation:Optional
-	CustomStaticRoute []CustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
+type VoltstackClusterStorageClassListObservation struct {
 }
 
-type StaticRouteListParameters struct {
+type VoltstackClusterStorageClassListParameters struct {
 
 	// +kubebuilder:validation:Optional
-	CustomStaticRoute []CustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
-}
-
-type StorageClassListObservation struct {
-}
-
-type StorageClassListParameters struct {
-
-	// +kubebuilder:validation:Optional
-	StorageClasses []StorageClassesParameters `json:"storageClasses,omitempty" tf:"storage_classes,omitempty"`
-}
-
-type StorageClassesObservation struct {
-}
-
-type StorageClassesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DefaultStorageClass *bool `json:"defaultStorageClass,omitempty" tf:"default_storage_class,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OpenebsEnterprise []OpenebsEnterpriseParameters `json:"openebsEnterprise,omitempty" tf:"openebs_enterprise,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StorageClassName *string `json:"storageClassName,omitempty" tf:"storage_class_name,omitempty"`
-}
-
-type SubnetsIPv4Observation struct {
-}
-
-type SubnetsIPv4Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
-}
-
-type SubnetsIPv6Observation struct {
-}
-
-type SubnetsIPv6Parameters struct {
-
-	// +kubebuilder:validation:Optional
-	Plen *float64 `json:"plen,omitempty" tf:"plen,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
-}
-
-type SubnetsObservation struct {
-}
-
-type SubnetsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	IPv4 []SubnetsIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	IPv6 []SubnetsIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
-}
-
-type SwObservation struct {
-}
-
-type SwParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DefaultSwVersion *bool `json:"defaultSwVersion,omitempty" tf:"default_sw_version,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VolterraSoftwareVersion *string `json:"volterraSoftwareVersion,omitempty" tf:"volterra_software_version,omitempty"`
-}
-
-type TLSInterceptCustomCertificateObservation struct {
-}
-
-type TLSInterceptCustomCertificateParameters struct {
-
-	// +kubebuilder:validation:Optional
-	CertificateURL *string `json:"certificateUrl,omitempty" tf:"certificate_url,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	CustomHashAlgorithms []CustomCertificateCustomHashAlgorithmsParameters `json:"customHashAlgorithms,omitempty" tf:"custom_hash_algorithms,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DisableOcspStapling []CustomCertificateDisableOcspStaplingParameters `json:"disableOcspStapling,omitempty" tf:"disable_ocsp_stapling,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	PrivateKey []CustomCertificatePrivateKeyParameters `json:"privateKey,omitempty" tf:"private_key,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	UseSystemDefaults []CustomCertificateUseSystemDefaultsParameters `json:"useSystemDefaults,omitempty" tf:"use_system_defaults,omitempty"`
-}
-
-type TLSInterceptObservation struct {
-}
-
-type TLSInterceptParameters struct {
-
-	// +kubebuilder:validation:Optional
-	CustomCertificate []CustomCertificateParameters `json:"customCertificate,omitempty" tf:"custom_certificate,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EnableForAllDomains *bool `json:"enableForAllDomains,omitempty" tf:"enable_for_all_domains,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Policy []PolicyParameters `json:"policy,omitempty" tf:"policy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	TrustedCAURL *string `json:"trustedCaUrl,omitempty" tf:"trusted_ca_url,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VolterraCertificate *bool `json:"volterraCertificate,omitempty" tf:"volterra_certificate,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VolterraTrustedCA *bool `json:"volterraTrustedCa,omitempty" tf:"volterra_trusted_ca,omitempty"`
-}
-
-type TLSInterceptPolicyObservation struct {
-}
-
-type TLSInterceptPolicyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	InterceptionRules []PolicyInterceptionRulesParameters `json:"interceptionRules,omitempty" tf:"interception_rules,omitempty"`
-}
-
-type UseSystemDefaultsObservation struct {
-}
-
-type UseSystemDefaultsParameters struct {
-}
-
-type VoltstackClusterActiveForwardProxyPoliciesObservation struct {
-}
-
-type VoltstackClusterActiveForwardProxyPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ForwardProxyPolicies []ActiveForwardProxyPoliciesForwardProxyPoliciesParameters `json:"forwardProxyPolicies,omitempty" tf:"forward_proxy_policies,omitempty"`
-}
-
-type VoltstackClusterActiveNetworkPoliciesObservation struct {
-}
-
-type VoltstackClusterActiveNetworkPoliciesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	NetworkPolicies []ActiveNetworkPoliciesNetworkPoliciesParameters `json:"networkPolicies,omitempty" tf:"network_policies,omitempty"`
-}
-
-type VoltstackClusterGlobalNetworkListObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkConnections []GlobalNetworkListGlobalNetworkConnectionsObservation `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
-}
-
-type VoltstackClusterGlobalNetworkListParameters struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkConnections []GlobalNetworkListGlobalNetworkConnectionsParameters `json:"globalNetworkConnections,omitempty" tf:"global_network_connections,omitempty"`
-}
-
-type VoltstackClusterObservation struct {
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkList []VoltstackClusterGlobalNetworkListObservation `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OutsideStaticRoutes []VoltstackClusterOutsideStaticRoutesObservation `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
-}
-
-type VoltstackClusterOutsideStaticRoutesObservation struct {
-
-	// +kubebuilder:validation:Optional
-	StaticRouteList []VoltstackClusterOutsideStaticRoutesStaticRouteListObservation `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
-}
-
-type VoltstackClusterOutsideStaticRoutesParameters struct {
-
-	// +kubebuilder:validation:Optional
-	StaticRouteList []VoltstackClusterOutsideStaticRoutesStaticRouteListParameters `json:"staticRouteList,omitempty" tf:"static_route_list,omitempty"`
-}
-
-type VoltstackClusterOutsideStaticRoutesStaticRouteListObservation struct {
-
-	// +kubebuilder:validation:Optional
-	CustomStaticRoute []OutsideStaticRoutesStaticRouteListCustomStaticRouteObservation `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
-}
-
-type VoltstackClusterOutsideStaticRoutesStaticRouteListParameters struct {
-
-	// +kubebuilder:validation:Optional
-	CustomStaticRoute []OutsideStaticRoutesStaticRouteListCustomStaticRouteParameters `json:"customStaticRoute,omitempty" tf:"custom_static_route,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SimpleStaticRoute *string `json:"simpleStaticRoute,omitempty" tf:"simple_static_route,omitempty"`
-}
-
-type VoltstackClusterParameters struct {
-
-	// +kubebuilder:validation:Optional
-	ActiveForwardProxyPolicies []VoltstackClusterActiveForwardProxyPoliciesParameters `json:"activeForwardProxyPolicies,omitempty" tf:"active_forward_proxy_policies,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ActiveNetworkPolicies []VoltstackClusterActiveNetworkPoliciesParameters `json:"activeNetworkPolicies,omitempty" tf:"active_network_policies,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DcClusterGroup []DcClusterGroupParameters `json:"dcClusterGroup,omitempty" tf:"dc_cluster_group,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DefaultStorage *bool `json:"defaultStorage,omitempty" tf:"default_storage,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ForwardProxyAllowAll *bool `json:"forwardProxyAllowAll,omitempty" tf:"forward_proxy_allow_all,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	GCPCertifiedHw *string `json:"gcpCertifiedHw,omitempty" tf:"gcp_certified_hw,omitempty"`
-
-	// +kubebuilder:validation:Required
-	GCPZoneNames []*string `json:"gcpZoneNames" tf:"gcp_zone_names,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	GlobalNetworkList []VoltstackClusterGlobalNetworkListParameters `json:"globalNetworkList,omitempty" tf:"global_network_list,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	K8SCluster []K8SClusterParameters `json:"k8sCluster,omitempty" tf:"k8s_cluster,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoDcClusterGroup *bool `json:"noDcClusterGroup,omitempty" tf:"no_dc_cluster_group,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoForwardProxy *bool `json:"noForwardProxy,omitempty" tf:"no_forward_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoGlobalNetwork *bool `json:"noGlobalNetwork,omitempty" tf:"no_global_network,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoK8SCluster *bool `json:"noK8SCluster,omitempty" tf:"no_k8s_cluster,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoNetworkPolicy *bool `json:"noNetworkPolicy,omitempty" tf:"no_network_policy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NoOutsideStaticRoutes *bool `json:"noOutsideStaticRoutes,omitempty" tf:"no_outside_static_routes,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	NodeNumber *float64 `json:"nodeNumber,omitempty" tf:"node_number,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	OutsideStaticRoutes []VoltstackClusterOutsideStaticRoutesParameters `json:"outsideStaticRoutes,omitempty" tf:"outside_static_routes,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SiteLocalNetwork []SiteLocalNetworkParameters `json:"siteLocalNetwork,omitempty" tf:"site_local_network,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SiteLocalSubnet []SiteLocalSubnetParameters `json:"siteLocalSubnet,omitempty" tf:"site_local_subnet,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SmConnectionPublicIP *bool `json:"smConnectionPublicIp,omitempty" tf:"sm_connection_public_ip,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	SmConnectionPvtIP *bool `json:"smConnectionPvtIp,omitempty" tf:"sm_connection_pvt_ip,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StorageClassList []StorageClassListParameters `json:"storageClassList,omitempty" tf:"storage_class_list,omitempty"`
+	StorageClasses []StorageClassListStorageClassesParameters `json:"storageClasses,omitempty" tf:"storage_classes,omitempty"`
 }
 
 // GCPVPCSiteSpec defines the desired state of GCPVPCSite

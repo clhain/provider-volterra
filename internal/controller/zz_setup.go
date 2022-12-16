@@ -11,8 +11,10 @@ import (
 
 	providerconfig "github.com/clhain/provider-volterra/internal/controller/providerconfig"
 	appfirewall "github.com/clhain/provider-volterra/internal/controller/volterra/appfirewall"
+	awsvpcsite "github.com/clhain/provider-volterra/internal/controller/volterra/awsvpcsite"
 	cloudcredentials "github.com/clhain/provider-volterra/internal/controller/volterra/cloudcredentials"
 	gcpvpcsite "github.com/clhain/provider-volterra/internal/controller/volterra/gcpvpcsite"
+	healthcheck "github.com/clhain/provider-volterra/internal/controller/volterra/healthcheck"
 	httploadbalancer "github.com/clhain/provider-volterra/internal/controller/volterra/httploadbalancer"
 	originpool "github.com/clhain/provider-volterra/internal/controller/volterra/originpool"
 	tfparamsaction "github.com/clhain/provider-volterra/internal/controller/volterra/tfparamsaction"
@@ -25,8 +27,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		providerconfig.Setup,
 		appfirewall.Setup,
+		awsvpcsite.Setup,
 		cloudcredentials.Setup,
 		gcpvpcsite.Setup,
+		healthcheck.Setup,
 		httploadbalancer.Setup,
 		originpool.Setup,
 		tfparamsaction.Setup,

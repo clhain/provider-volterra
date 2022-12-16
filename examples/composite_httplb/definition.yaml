@@ -1,9 +1,9 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xfoohttplbs.volterra.upbound.io/v1alpha1
+  name: xfoohttplbs.volterra.upbound.io
 spec:
-  group: volterra.upbound.io/v1alpha1
+  group: volterra.upbound.io
   names:
     kind: XFooHTTPLB
     plural: xfoohttplbs

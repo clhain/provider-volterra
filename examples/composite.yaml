@@ -1,0 +1,13 @@
+apiVersion: volterra.upbound.io/v1alpha1
+kind: FooHTTPLB
+metadata:
+  namespace: default
+  name: my-foo-lb
+spec:
+  parameters:
+    projectName: clhain-crossplane2
+    fqdn: crossplane2.demo.f5octo.dev
+    originFqdn: example2.com
+    originPort: 8080
+  compositionRef:
+    name: foo-load-balancer

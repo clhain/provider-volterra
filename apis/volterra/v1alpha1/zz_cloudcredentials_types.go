@@ -64,48 +64,6 @@ type AzurePfxCertificateParameters struct {
 	TenantID *string `json:"tenantId,omitempty" tf:"tenant_id,omitempty"`
 }
 
-type BlindfoldSecretInfoInternalObservation struct {
-}
-
-type BlindfoldSecretInfoInternalParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Location *string `json:"location,omitempty" tf:"location,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
-}
-
-type BlindfoldSecretInfoObservation struct {
-}
-
-type BlindfoldSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Location *string `json:"location,omitempty" tf:"location,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
-}
-
-type ClearSecretInfoObservation struct {
-}
-
-type ClearSecretInfoParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	URL *string `json:"url,omitempty" tf:"url,omitempty"`
-}
-
 type ClientSecretBlindfoldSecretInfoInternalObservation struct {
 }
 
@@ -440,34 +398,76 @@ type PasswordWingmanSecretInfoParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
+type SecretKeyBlindfoldSecretInfoInternalObservation struct {
+}
+
+type SecretKeyBlindfoldSecretInfoInternalParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
+}
+
+type SecretKeyBlindfoldSecretInfoObservation struct {
+}
+
+type SecretKeyBlindfoldSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DecryptionProvider *string `json:"decryptionProvider,omitempty" tf:"decryption_provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Location *string `json:"location,omitempty" tf:"location,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	StoreProvider *string `json:"storeProvider,omitempty" tf:"store_provider,omitempty"`
+}
+
+type SecretKeyClearSecretInfoObservation struct {
+}
+
+type SecretKeyClearSecretInfoParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+}
+
 type SecretKeyObservation struct {
 }
 
 type SecretKeyParameters struct {
 
 	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfo []BlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
+	BlindfoldSecretInfo []SecretKeyBlindfoldSecretInfoParameters `json:"blindfoldSecretInfo,omitempty" tf:"blindfold_secret_info,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	BlindfoldSecretInfoInternal []BlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
+	BlindfoldSecretInfoInternal []SecretKeyBlindfoldSecretInfoInternalParameters `json:"blindfoldSecretInfoInternal,omitempty" tf:"blindfold_secret_info_internal,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	ClearSecretInfo []ClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
+	ClearSecretInfo []SecretKeyClearSecretInfoParameters `json:"clearSecretInfo,omitempty" tf:"clear_secret_info,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	SecretEncodingType *string `json:"secretEncodingType,omitempty" tf:"secret_encoding_type,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	VaultSecretInfo []VaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
+	VaultSecretInfo []SecretKeyVaultSecretInfoParameters `json:"vaultSecretInfo,omitempty" tf:"vault_secret_info,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	WingmanSecretInfo []WingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
+	WingmanSecretInfo []SecretKeyWingmanSecretInfoParameters `json:"wingmanSecretInfo,omitempty" tf:"wingman_secret_info,omitempty"`
 }
 
-type VaultSecretInfoObservation struct {
+type SecretKeyVaultSecretInfoObservation struct {
 }
 
-type VaultSecretInfoParameters struct {
+type SecretKeyVaultSecretInfoParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
@@ -485,10 +485,10 @@ type VaultSecretInfoParameters struct {
 	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
 }
 
-type WingmanSecretInfoObservation struct {
+type SecretKeyWingmanSecretInfoObservation struct {
 }
 
-type WingmanSecretInfoParameters struct {
+type SecretKeyWingmanSecretInfoParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
